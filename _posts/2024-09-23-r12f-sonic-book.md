@@ -1,3 +1,9 @@
+---
+layout: post
+title:  SONiC Book
+date:   2024-09-23
+---
+
 在博客园上的，我的博客访问最多的文章是[谈谈开源交换机操作系统SONiC](https://www.cnblogs.com/lionelgeng/p/16330586.html)，在搜索引擎中的搜索SONiC的时候，结果排名也比较靠前。其实我的那篇文章最多全是一个综述，对于SONiC内部实现没有更深入的分析，排名靠前是因为写的时间比较早。
 
 同时还有一个关于SONiC的站点也比较靠前，他就是[sonic-book](https://r12f.com/sonic-book)，中文名称叫做SONiC入门指南。这个系列的文章对于SONiC从功能介绍，安装指导，流程分析，代码展示都有所涉及，虽然有些章节还处于工作进行中阶段(WIP)，但是从已发布的文章就可以很具体地了解SONiC的具体实现了。
