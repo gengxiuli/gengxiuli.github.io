@@ -2,6 +2,8 @@
 layout: post
 title:  SONiC Book
 date:   2024-09-23
+category: networking 
+tags:   cnblogs sonic 
 ---
 
 在博客园上的，我的博客访问最多的文章是[谈谈开源交换机操作系统SONiC](https://www.cnblogs.com/lionelgeng/p/16330586.html)，在搜索引擎中的搜索SONiC的时候，结果排名也比较靠前。其实我的那篇文章最多算是一个综述，对于SONiC内部实现没有更深入的分析，排名靠前是因为写的时间比较早。
