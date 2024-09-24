@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  Gitlab pages
+title:  Gitlab Pages
 date:   2024-09-13
 category: blog
 tags:   jekyll gitlab pages 
