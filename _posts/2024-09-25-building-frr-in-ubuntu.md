@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  Building FRR
-date:   2024-09-23
+date:   2024-09-25
 category: networking 
 tags:   frr 
 ---
