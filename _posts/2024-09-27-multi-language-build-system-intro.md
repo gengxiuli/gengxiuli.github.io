@@ -10,4 +10,5 @@ tags:   build bazel buck
 
 buck2官网有个[Why Buck2](https://buck2.build/docs/about/why/)的页面，里面回答了三个问题:[why does Buck2 exist](https://buck2.build/docs/about/why/#why-does-buck2-exist)，[what's different about Buck2](https://buck2.build/docs/about/why/#whats-different-about-buck2)和[why use Buck2](https://buck2.build/docs/about/why/#why-use-buck2)，需要注意的是，虽然这里的很多比较基准都是buck，但页面内同时也标注了，这些区别同样适用于其他构建系统如bazel。
 
-下面我们再来看看google开源的构建工具bazel,github仓库在[这里](https://github.com/bazelbuild/bazel)，但是官网主页[https://bazel.build](https://bazel.build)在手机浏览器上却一直无法访问(2024年9月27日验证)。
+下面我们再来看看google开源的构建工具bazel,github仓库在[这里](https://github.com/bazelbuild/bazel)，但是官网主页[https://bazel.build](https://bazel.build)在手机浏览器上却一直无法访问(2024年9月27日验证)。在介绍页面bazel也提到了多语言多平台的支持:
+> One tool, multiple languages: Build and test Java, C++, Android, iOS, Go, and a wide variety of other language platforms. Bazel runs on Windows, macOS, and Linux.
