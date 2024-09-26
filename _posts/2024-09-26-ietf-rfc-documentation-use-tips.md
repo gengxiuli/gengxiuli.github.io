@@ -13,7 +13,7 @@ tags:   ietf rfc
 
 3.互联网的快速发展离不开一个个的RFC文档，但是这一个个文档是如何来的呢？是先有了RFC标准，然后各个硬件和软件厂商去实现，还是厂商先根据需求研究实现，然后在实现的过程中讨论验证迭代，最终形成完善的文档，再讲这些文档标准化为RFC？这个问题我想只能去深入分析网络的来龙去脉才能获得，而rfc这一个个文档就是非常好的学习资源。
 
-4.china-pub曾经翻译过一些rfc文档，不过后来没有更新了。目前有一个网站有rfc的一些在线资源，具体在这里[http://rfc.ac.cn/rfcindex.html](http://rfc.ac.cn/rfcindex.html)。其实学习RFC最好的方法就是阅读英文原文，这样既能够阅读最原始的资料，也能学习常用的计算机网络技术用语。rfc在线资源有几个国内的镜像，可以作为备份使用。
+4.china-pub曾经翻译过一些rfc文档，不过后来没有更新了。http://rfc.ac.cn/rfcindex.html目前也无法访问了。其实学习RFC最好的方法就是阅读英文原文，这样既能够阅读最原始的资料，也能学习常用的计算机网络技术用语。rfc在线资源有几个国内的镜像，可以作为备份使用。
  [https://mirrors.nju.edu.cn/rfc/](https://mirrors.nju.edu.cn/rfc/)
  [https://unicom.mirrors.ustc.edu.cn/rfc/](https://unicom.mirrors.ustc.edu.cn/rfc/)
 
@@ -29,3 +29,4 @@ tags:   ietf rfc
 2024-09-26更新：
 1. ietf上的一个页面[About RFCs](https://www.ietf.org/process/rfcs/)中提到了Publication formats，即发布的文档格式，其中提到了在rfc8650之前，html格式和之后不太一样。直白点说，就是rfc8650之前是将纯文本格式直接渲染成html格式，支持了页面链接点击跳转，而rfc8650之后的html格式，则真正实现了网页效果，支持SVG格式图像，包含相关的过期或者更新rfc,便于手机浏览等。
 2. 然后从rfc8650开始，支持了RFCXML格式作为原始编辑格式，而非发布格式，这也意味着RFCXML逐渐在替代Plain Text(纯文本格式)，因为上述html格式需要原始文件的支持，具体细节可以看[这里](https://authors.ietf.org/rfcxml-vocabulary),[这里](https://authors.ietf.org/)和[这里](https://author-tools.ietf.org/)。
+3. 更新该文章的所有链接为https，已经无法访问的链接已经剔除。
