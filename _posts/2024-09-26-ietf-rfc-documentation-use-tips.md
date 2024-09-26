@@ -14,17 +14,16 @@ tags:   ietf rfc
 3.互联网的快速发展离不开一个个的RFC文档，但是这一个个文档是如何来的呢？是先有了RFC标准，然后各个硬件和软件厂商去实现，还是厂商先根据需求研究实现，然后在实现的过程中讨论验证迭代，最终形成完善的文档，再讲这些文档标准化为RFC？这个问题我想只能去深入分析网络的来龙去脉才能获得，而rfc这一个个文档就是非常好的学习资源。
 
 4.china-pub曾经翻译过一些rfc文档，不过后来没有更新了。目前有一个网站有rfc的一些在线资源，具体在这里[http://rfc.ac.cn/rfcindex.html](http://rfc.ac.cn/rfcindex.html)。其实学习RFC最好的方法就是阅读英文原文，这样既能够阅读最原始的资料，也能学习常用的计算机网络技术用语。rfc在线资源有几个国内的镜像，可以作为备份使用。
- [http://mirrors.zju.edu.cn/rfc/](http://mirrors.zju.edu.cn/rfc/)
- [http://mirrors.nju.edu.cn/rfc/](http://mirrors.nju.edu.cn/rfc/)
- [http://unicom.mirrors.ustc.edu.cn/rfc/](http://unicom.mirrors.ustc.edu.cn/rfc/)
+ [https://mirrors.nju.edu.cn/rfc/](https://mirrors.nju.edu.cn/rfc/)
+ [https://unicom.mirrors.ustc.edu.cn/rfc/](https://unicom.mirrors.ustc.edu.cn/rfc/)
 
 5.为了便于阅读且兼容旧的显示设备，RFC文档的显示格式一直是按照page来管理的，这样可以保证在大多数设备上都可以方便的阅读。不过随着显示设备的发展，这种格式越来越不适合打屏幕阅读了，同时对应的PDF文档没有目录结构，这也是RFC文档阅读起来的一个痛点。好在RFC组织的这些人也认识到了这些问题，因此从RFC8650开始（2019年11月），txt文档不再使用page结构[https://tools.ietf.org/html/rfc8650]，同时对应的pdf文件也有了目录信息，方便阅读了。
 
 2022-05-14更新：
-1. 有个将RFC翻译为中文的网站([rfc2cn](http://rfc2cn.com/))，根据该网站说明，由于RFC版权限制，只翻译了RFC2200开始的文章。这个网站的翻译大部分是机器翻译的结果，页面左右分别对应显示英文和中文，包括所有英文字符的编译结果。但这些文档也不是包含所有，SRV6的两篇RFC8754和RFC8986就不再已翻译之列。
+1. 有个将RFC翻译为中文的网站([rfc2cn](https://rfc2cn.com/))，根据该网站说明，由于RFC版权限制，只翻译了RFC2200开始的文章。这个网站的翻译大部分是机器翻译的结果，页面左右分别对应显示英文和中文，包括所有英文字符的编译结果。但这些文档也不是包含所有，SRV6的两篇RFC8754和RFC8986就不再已翻译之列。
 
 2023-01-03更新：
-1. 最早看RFC文档一般都是这种形式：https://www.rfc-editor.org/rfc/rfc2460, 也就是文本文件，使用ASCII码表达一些图表等信息。此外还有一些rfc工具可以将使用更加友好的方式查看，比如这个[rfcviewer](https://sourceforge.net/projects/rfcviewer/)。
+1. 最早看RFC文档一般都是这种形式：[https://www.rfc-editor.org/rfc/rfc2460](https://www.rfc-editor.org/rfc/rfc2460), 也就是文本文件，使用ASCII码表达一些图表等信息。此外还有一些rfc工具可以将使用更加友好的方式查看，比如这个[rfcviewer](https://sourceforge.net/projects/rfcviewer/)。
 2. 现在[datatraker](https://datatracker.ietf.org/doc/rfc8986/)看起来符合阅读习惯,因为它还记录了RFC从草案到标准的所有过程，便于了解这个技术的来龙去脉，对于深入学习技术非常有帮助。
 
 2024-09-26更新：
