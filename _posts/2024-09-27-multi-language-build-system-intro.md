@@ -10,5 +10,8 @@ tags:   build bazel buck
 
 buck2官网有个[Why Buck2](https://buck2.build/docs/about/why/)的页面，里面回答了三个问题:[why does Buck2 exist](https://buck2.build/docs/about/why/#why-does-buck2-exist)，[what's different about Buck2](https://buck2.build/docs/about/why/#whats-different-about-buck2)和[why use Buck2](https://buck2.build/docs/about/why/#why-use-buck2)，需要注意的是，虽然这里的很多比较基准都是buck，但页面内同时也标注了，这些区别同样适用于其他构建系统如bazel。
 
-下面我们再来看看google开源的构建工具bazel,github仓库在[这里](https://github.com/bazelbuild/bazel)，但是官网主页[https://bazel.build](https://bazel.build)在手机浏览器上却一直无法访问(2024年9月27日验证)。在介绍页面bazel也提到了多语言多平台的支持:
+下面我们再来看看google开源的构建工具bazel,github仓库在[这里](https://github.com/bazelbuild/bazel)，但是官网主页[https://bazel.build](https://bazel.build)在手机浏览器上却一直无法访问(2024年9月27日验证)，目前可以移步参考这里[https://bazel.google.cn/](https://bazel.google.cn/)。在介绍页面bazel也提到了多语言多平台的支持:
 > One tool, multiple languages: Build and test Java, C++, Android, iOS, Go, and a wide variety of other language platforms. Bazel runs on Windows, macOS, and Linux.
+具体其他使用方法，可以参考官网手册，也可以在具体实践中学习摸索这里就不做过多介绍了。
+
+除了上面提到的多语言构建系统外，还有很多针对特定语言的构建系统，比如[CMake](https://cmake.org/)就针对的是C++/C，最近在Windows平台下构建Wireshark就用到了CMake。CMake在这里可以根据环境配置生成Visual Studio构建用的sln文件，也可以生成Ninja构建使用的ninja文件，当然还可以生成传统Make使用的Makefile文件。CMake还支持代码外编译(Out-of-source builds)，即构建输出文件和源代码文件完全分开，便于代码管理和部署。
