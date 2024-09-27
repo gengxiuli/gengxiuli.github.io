@@ -12,6 +12,7 @@ buck2官网有个[Why Buck2](https://buck2.build/docs/about/why/)的页面，里
 
 下面我们再来看看google开源的构建工具bazel,github仓库在[这里](https://github.com/bazelbuild/bazel)，但是官网主页[https://bazel.build](https://bazel.build)在手机浏览器上却一直无法访问(2024年9月27日验证)，目前可以移步参考这里[https://bazel.google.cn/](https://bazel.google.cn/)。在介绍页面bazel也提到了多语言多平台的支持:
 > One tool, multiple languages: Build and test Java, C++, Android, iOS, Go, and a wide variety of other language platforms. Bazel runs on Windows, macOS, and Linux.
+
 具体其他使用方法，可以参考官网手册，也可以在具体实践中学习摸索这里就不做过多介绍了。
 
 除了上面提到的多语言构建系统外，还有很多针对特定语言的构建系统，比如[CMake](https://cmake.org/)就针对的是C++/C，最近在Windows平台下构建Wireshark就用到了CMake。CMake在这里可以根据环境配置生成Visual Studio构建用的sln文件，也可以生成Ninja构建使用的ninja文件，当然还可以生成传统Make使用的Makefile文件。CMake还支持代码外编译(Out-of-source builds)，即构建输出文件和源代码文件完全分开，便于代码管理和部署。国内的腾讯也开源了构建系统[blade](https://github.com/chen3feng/blade-build),功能和上面的bazel类似，这里有篇[使用指南](https://zzy979.github.io/posts/blade-build-tool/)，其中还提到构建系统和编译系统的区别:
