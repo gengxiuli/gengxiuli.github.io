@@ -18,4 +18,4 @@ buck2官网有个[Why Buck2](https://buck2.build/docs/about/why/)的页面，里
 除了上面提到的多语言构建系统外，还有很多针对特定语言的构建系统，比如[CMake](https://cmake.org/)就针对的是C++/C，最近在Windows平台下构建Wireshark就用到了CMake。CMake在这里可以根据环境配置生成Visual Studio构建用的sln文件，也可以生成Ninja构建使用的ninja文件，当然还可以生成传统Make使用的Makefile文件。CMake还支持代码外编译(Out-of-source builds)，即构建输出文件和源代码文件完全分开，便于代码管理和部署。国内的腾讯也开源了构建系统[blade](https://github.com/chen3feng/blade-build),功能和上面的bazel类似，这里有篇[使用指南](https://zzy979.github.io/posts/blade-build-tool/)，其中还提到构建系统和编译系统的区别:
 > 构建(build)和编译(compile)不同——编译器负责将源代码转换为库文件或可执行文件；构建工具负责分析构建目标之间的依赖关系，并调用编译器来生成构建目标。
 
-其实构建系统和编译系统，版本控制工具都可以集成起来，实现更加灵活和强大的功能，但是这需要很强的研发能力。[谷歌对微软：代码管理工具哪家强？](https://mp.weixin.qq.com/s/ckrH72rBp7_GT1UlfQsUaw)其中提到谷歌的一些内部做法，值得其他有需求的公司或者项目借鉴，另外其中还提到bazel的由来。
+其实构建系统，编译系统和版本控制工具可以集成起来，实现更加灵活和强大的功能，但是这需要很强的研发能力。[谷歌对微软：代码管理工具哪家强？](https://mp.weixin.qq.com/s/ckrH72rBp7_GT1UlfQsUaw)其中提到谷歌的一些内部做法，值得其他有需求的公司或者项目借鉴，另外其中还提到bazel 项目的由来，内部名字是blaze。
