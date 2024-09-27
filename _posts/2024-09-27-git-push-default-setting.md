@@ -8,19 +8,19 @@ tags:   git
 
 在执行git push的时候打印了下面一段话：
 
-> warning: push.default is unset; its implicit value is changing in
-Git 2.0 from 'matching' to 'simple'. To squelch this message
-and maintain the current behavior after the default changes, use:
+    warning: push.default is unset; its implicit value is changing in
+    Git 2.0 from 'matching' to 'simple'. To squelch this message
+    and maintain the current behavior after the default changes, use:
 
->  git config --global push.default matching
+    git config --global push.default matching
 
-> To squelch this message and adopt the new behavior now, use:
+    To squelch this message and adopt the new behavior now, use:
 
->  git config --global push.default simple
+    git config --global push.default simple
 
-> See 'git help config' and search for 'push.default' for further information.
-(the 'simple' mode was introduced in Git 1.7.11. Use the similar mode
-'current' instead of 'simple' if you sometimes use older versions of Git)
+    See 'git help config' and search for 'push.default' for further information.
+    (the 'simple' mode was introduced in Git 1.7.11. Use the similar mode
+    'current' instead of 'simple' if you sometimes use older versions of Git)
 
 大意是说当前Git(version 1.8.3.1)push.default未设置，而从Git 2.0开始，其默认设置由"matching"修改为"simple"。所以你需要显示的设置其默认值来关闭上述提示信息。
 
