@@ -21,4 +21,10 @@ ssh 最广为人知的用处就是远程登录了，它比 telnet 更安全，�
 
 > 证书登录的主要优点有两个：（1）用户和服务器不用交换公钥，这更容易管理，也具有更好的可扩展性。（2）证书可以设置到期时间，而公钥没有到期时间。针对不同的情况，可以设置有效期很短的证书，进一步提高安全性。
 
-本文最开始提到的 sftp，其实也是利用 ssh 提供的一种文件传输服务，它比 ftp 更安全。
+本文最开始提到的 sftp，其实也是利用 ssh 提供的一种文件传输服务，它比 ftp 更安全。Wikipedia 上的介绍如下：
+
+> Compared to the SCP protocol, which only allows file transfers, the SFTP protocol allows for a range of operations on remote files which make it more like a remote file system protocol. An SFTP client's extra capabilities include resuming interrupted transfers, directory listings, and remote file removal. There is also support for all UNIX file types, including symbolic links.
+
+> SFTP is not FTP run over SSH, but rather a new protocol designed from the ground up by the IETF SECSH working group. It is sometimes confused with Simple File Transfer Protocol.
+
+sftp 与 scp 协议比较起来有很多优点，注意这里并没有 与 ftp 比较，因为 sftp 是重新设计的协议，并不是 FTP over SSH。
