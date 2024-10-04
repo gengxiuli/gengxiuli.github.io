@@ -47,4 +47,7 @@ SSH 客户端软件[MobaXterm](https://mobaxterm.mobatek.net)在和服务器建�
 
 其他使用到 SSH 的工具还有：
 1. VSCode 上的扩展功能[Remote Development using SSH](https://code.visualstudio.com/docs/remote/ssh#_remember-hosts-and-advanced-settings)
-2. 
+2. 在嵌入式系统上，由于系统资源限制，一般会使用开源的[Dropbear](https://matt.ucc.asn.au/dropbear/dropbear.html)来实现SSH功能，官网上介绍是：
+> A small memory footprint suitable for memory-constrained environments – Dropbear can compile to a 110kB statically linked binary with uClibc on x86 (only minimal options selected)
+
+3. 
