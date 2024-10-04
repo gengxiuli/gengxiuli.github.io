@@ -41,4 +41,4 @@ SSH 客户端软件[MobaXterm](https://mobaxterm.mobatek.net)在和服务器建�
 
 本文提到了 ssh 和 SSH 两种写法，其实有些细微差异。ssh 一般指客户端或者服务器上的 ssh 命令行，最广为人知的就是 openssh 开源软件了，他支持 SSH 客户端和服务器功能，不仅仅是 Linux 和 Mac 上默认的 SSH 客户端服务器程序，也成为了 Windows 10 之后的默认 SSH 工具，具体参考这里[OpenSSH for Windows overview](https://learn.microsoft.com/en-us/windows-server/administration/openssh/openssh-overview)。
 
-另外，我们常用的 github/gitlab 等 git 服务，除了通过 HTTPS 地址 clone 仓库在，也支持通过 SSH 方式 clone 仓库，如果你还需要修改上传代码，那只能使用 SSH 方式。
+另外，我们常用的 github/gitlab 等 git 服务，除了通过 HTTPS 地址 clone 仓库在，也支持通过 SSH 方式 clone 仓库，如果你还需要修改上传代码，那只能使用 SSH 方式。但是和一般的通过 SSH 登录服务器方式不同，git 账户需要预先通过本地生成非对称加密的公钥和私钥，并把公钥指纹配置到 git 服务器上，后续基于此完成 git 服务的认证和使用。
