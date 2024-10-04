@@ -44,3 +44,10 @@ SSH 客户端软件[MobaXterm](https://mobaxterm.mobatek.net)在和服务器建�
 另外，我们常用的 github/gitlab 等 git 服务，除了通过 HTTPS 地址 clone 仓库在，也支持通过 SSH 方式 clone 仓库，如果你还需要修改上传代码，那只能使用 SSH 方式。但是和一般的通过 SSH 登录服务器方式不同，git 账户需要预先通过本地生成非对称加密的公钥和私钥，并把公钥指纹配置到 git 服务器上，后续基于此完成 git 服务的认证和使用。
 
 而 SSH 是指由 IETF 定义的一种标准协议，全称是The Secure Shell (SSH)，它有 SSH 1 和 SSH 2 两个版本，现在主要用的都是 SSH 2。最初的协议架构描述是[RFC 4251 The Secure Shell (SSH) Protocol Architecture](https://www.rfc-editor.org/rfc/rfc4251.html)，其他 rfc 可以参考这里[OpenSSH Specifications](https://www.openssh.com/specs.html)。
+
+其他使用到 SSH 的工具还有：
+1. VSCode 上的扩展功能[Remote Development using SSH](https://code.visualstudio.com/docs/remote/ssh#_remember-hosts-and-advanced-settings)
+2. 在嵌入式系统上，由于系统资源限制，一般会使用开源的[Dropbear](https://matt.ucc.asn.au/dropbear/dropbear.html)来实现SSH功能，官网上介绍是：
+> A small memory footprint suitable for memory-constrained environments – Dropbear can compile to a 110kB statically linked binary with uClibc on x86 (only minimal options selected)
+
+3. 许多mirror镜像站点使用的[rsync](https://rsync.samba.org/)也支持使用SSH作为安全通道。
