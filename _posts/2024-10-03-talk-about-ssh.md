@@ -50,4 +50,4 @@ SSH 客户端软件[MobaXterm](https://mobaxterm.mobatek.net)在和服务器建�
 2. 在嵌入式系统上，由于系统资源限制，一般会使用开源的[Dropbear](https://matt.ucc.asn.au/dropbear/dropbear.html)来实现SSH功能，官网上介绍是：
 > A small memory footprint suitable for memory-constrained environments – Dropbear can compile to a 110kB statically linked binary with uClibc on x86 (only minimal options selected)
 
-3. 
+3. 许多mirror镜像站点使用的[rsync](https://github.com/rsyncproject/rsync)
