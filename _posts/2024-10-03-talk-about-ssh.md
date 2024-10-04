@@ -6,7 +6,7 @@ category: networking
 tags:   ssh
 ---
 
-最近看到一篇文章[那些 ssh 教我的事](https://yangwenbo.com/articles/ssh-oh-my-god.html)，虽然是 2009 年发布的，虽然我也用了 ssh 很多年，但这些事儿我还真不知道，比如 ssh -L 和 ssh -R 这两个选项的作用，即使 sftp 知道也用过，但是没有具体去研究原理，所以借着国庆休假的时间，谈谈 ssh 的那些事儿。
+最近看到一篇文章[那些 ssh 教我的事](https://yangwenbo.com/articles/ssh-oh-my-god.html)，虽然是 2009 年发布的，虽然我也用了 ssh 很多年，但这些事儿我还真不知道，比如 ssh -L 和 ssh -R 这两个选项的作用，即使 SFTP 知道也用过，但是没有具体去研究原理，所以借着国庆休假的时间，谈谈 ssh 的那些事儿。
 
 ssh 最广为人知的用处就是远程登录了，它比 telnet 更安全，因此现在绝大部分网络设备和服务器都支持 ssh 服务器，允许通过 ssh 客户端登录管理。我们使用这种方式登录服务器的时候，一般都会看到一些提示窗口，询问我们是否保存服务器密钥指纹(key fingerprint)，确认之后我们才能够使用用户名和密码登录服务器。[什么是SSH？](https://info.support.huawei.com/info-finder/encyclopedia/zh/SSH.html)这篇文章详细介绍了 ssh 的工作原理，这里就不再一一赘述了，需要注意的几点是：
 1. 算法协商阶段涉及各种类型的算法，如果存在客户端和服务器对某个类型的算法达不成一致。则无法建立回话，这也是某些登录失败的原因。
@@ -21,21 +21,21 @@ ssh 最广为人知的用处就是远程登录了，它比 telnet 更安全，�
 
 > 证书登录的主要优点有两个：（1）用户和服务器不用交换公钥，这更容易管理，也具有更好的可扩展性。（2）证书可以设置到期时间，而公钥没有到期时间。针对不同的情况，可以设置有效期很短的证书，进一步提高安全性。
 
-本文最开始提到的 sftp，其实也是利用 ssh 提供的一种文件传输服务，它比 ftp 更安全。Wiki 上的介绍如下：
+本文最开始提到的 SFTP，其实也是利用 SSH 提供的一种文件传输服务，它比 FTP 更安全。Wiki 上的介绍如下：
 
 > Compared to the SCP protocol, which only allows file transfers, the SFTP protocol allows for a range of operations on remote files which make it more like a remote file system protocol. An SFTP client's extra capabilities include resuming interrupted transfers, directory listings, and remote file removal. There is also support for all UNIX file types, including symbolic links.
 
 > SFTP is not FTP run over SSH, but rather a new protocol designed from the ground up by the IETF SECSH working group. It is sometimes confused with Simple File Transfer Protocol.
 
-sftp 与 scp 协议比较起来有很多优点，注意这里并没有 与 ftp 比较，因为 sftp 是重新设计的协议，并不是 FTP over SSH，而 scp 是一种安全的文件拷贝协议，Wiki 介绍如下：
+SFTP 与 SCP 协议比较起来有很多优点，注意这里并没有 与 FTP 比较，因为 SFTP 是重新设计的协议，并不是 FTP over SSH，而 SCP 是一种安全的文件拷贝协议，Wiki 介绍如下：
 
 > Secure copy protocol (SCP) is a means of securely transferring computer files between a local host and a remote host or between two remote hosts. It is based on the Secure Shell (SSH) protocol. "SCP" commonly refers to both the Secure Copy Protocol and the program itself.
 
-但是 scp 已经逐渐被 sftp 或者 rsync 协议所取代：
+但是 SCP 已经逐渐被 SFTP 或者 rsync 协议所取代：
 
 > According to OpenSSH developers in April 2019, SCP is outdated, inflexible and not readily fixed; they recommend the use of more modern protocols like SFTP and rsync for file transfer. As of OpenSSH version 9.0, scp client therefore uses SFTP for file transfers by default instead of the legacy SCP/RCP protocol.
 
 SSH 客户端软件[MobaXterm](https://mobaxterm.mobatek.net)在和服务器建立 SSH 会话后，在服务器支持 SFTP 功能后，会自动建立 SFTP 会话窗口，便于上传下载文件，功能非常实用。
 
-除了 sftp 外，网络设备上常用的 netconf 服务也支持 over 到 SSH 上，具体可以看 juniper 网站上的这篇文章：[Establish an SSH Connection for a NETCONF Session](https://www.juniper.net/documentation/us/en/software/junos/netconf/topics/topic-map/netconf-ssh-connection.html)，以及相关的 [rfc6242 Using the NETCONF Protocol over Secure Shell (SSH)](https://datatracker.ietf.org/doc/html/rfc6242)。
+除了 SFTP 外，网络设备上常用的 NETCONF 服务也支持 over 到 SSH 上，具体可以看 juniper 网站上的这篇文章：[Establish an SSH Connection for a NETCONF Session](https://www.juniper.net/documentation/us/en/software/junos/netconf/topics/topic-map/netconf-ssh-connection.html)，以及相关的 [rfc6242 Using the NETCONF Protocol over Secure Shell (SSH)](https://datatracker.ietf.org/doc/html/rfc6242)。
 
