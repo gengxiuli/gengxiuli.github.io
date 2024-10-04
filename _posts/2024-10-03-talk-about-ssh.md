@@ -35,5 +35,7 @@ sftp 与 scp 协议比较起来有很多优点，注意这里并没有 与 ftp �
 
 > According to OpenSSH developers in April 2019, SCP is outdated, inflexible and not readily fixed; they recommend the use of more modern protocols like SFTP and rsync for file transfer. As of OpenSSH version 9.0, scp client therefore uses SFTP for file transfers by default instead of the legacy SCP/RCP protocol.
 
+SSH 客户端软件[MobaXterm](https://mobaxterm.mobatek.net)在和服务器建立 SSH 会话后，在服务器支持 SFTP 功能后，会自动建立 SFTP 会话窗口，便于上传下载文件，功能非常实用。
+
 除了 sftp 外，网络设备上常用的 netconf 服务也支持 over 到 SSH 上，具体可以看 juniper 网站上的这篇文章：[Establish an SSH Connection for a NETCONF Session](https://www.juniper.net/documentation/us/en/software/junos/netconf/topics/topic-map/netconf-ssh-connection.html)，以及相关的 [rfc6242 Using the NETCONF Protocol over Secure Shell (SSH)](https://datatracker.ietf.org/doc/html/rfc6242)。
 
