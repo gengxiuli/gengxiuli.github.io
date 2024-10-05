@@ -40,8 +40,8 @@ Nginx [Module ngx_http_ssl_module](https://nginx.org/en/docs/http/ngx_http_ssl_m
 
 > The ngx_http_ssl_module module provides the necessary support for HTTPS.
 This module is not built by default, it should be enabled with the --with-http_ssl_module configuration parameter.
-This module requires the OpenSSL library.
+This module requires the **OpenSSL** library.
 
 Apache [Apache SSL/TLS Encryption](https://httpd.apache.org/docs/2.4/ssl/)
 
-> The Apache HTTP Server module mod_ssl provides an interface to the OpenSSL library, which provides Strong Encryption using the Secure Sockets Layer and Transport Layer Security protocols.
+> The Apache HTTP Server module mod_ssl provides an interface to the **OpenSSL** library, which provides Strong Encryption using the Secure Sockets Layer and Transport Layer Security protocols.
