@@ -21,6 +21,31 @@ ssh 最广为人知的用处就是远程登录了，它比 telnet 更安全，�
 
 > 证书登录的主要优点有两个：（1）用户和服务器不用交换公钥，这更容易管理，也具有更好的可扩展性。（2）证书可以设置到期时间，而公钥没有到期时间。针对不同的情况，可以设置有效期很短的证书，进一步提高安全性。
 
+其实SSH在协议[The Secure Shell (SSH) Protocol Architecture](https://datatracker.ietf.org/doc/html/rfc4251#section-4.1)中也提及了这种机制。
+
+>  The server host key is used during key exchange to verify that the
+   client is really talking to the correct server.  For this to be
+   possible, the client must have a priori knowledge of the server's
+   public host key.
+
+>  Two different trust models can be used:
+
+   o  The client has a local database that associates each host name (as
+      typed by the user) with the corresponding public host key.  This
+      method requires no centrally administered infrastructure, and no third-party coordination.  The downside is that the database of
+      name-to-key associations may become burdensome to maintain.
+
+   o  The host name-to-key association is certified by a trusted
+      certification authority (CA).  The client only knows the CA root
+      key, and can verify the validity of all host keys certified by
+      accepted CAs.
+
+>  The second alternative eases the maintenance problem, since ideally
+   only a single CA key needs to be securely stored on the client.  On
+   the other hand, each host key must be appropriately certified by a
+   central authority before authorization is possible.  Also, a lot of
+   trust is placed on the central infrastructure.
+
 本文最开始提到的 SFTP，其实也是利用 SSH 提供的一种文件传输服务，它比 FTP 更安全。Wiki 上的介绍如下：
 
 > Compared to the SCP protocol, which only allows file transfers, the SFTP protocol allows for a range of operations on remote files which make it more like a remote file system protocol. An SFTP client's extra capabilities include resuming interrupted transfers, directory listings, and remote file removal. There is also support for all UNIX file types, including symbolic links.
