@@ -30,12 +30,12 @@ ssh 最广为人知的用处就是远程登录了，它比 telnet 更安全，�
 
 >  Two different trust models can be used:
 
-   o  The client has a local database that associates each host name (as
+>  o  The client has a local database that associates each host name (as
       typed by the user) with the corresponding public host key.  This
       method requires no centrally administered infrastructure, and no third-party coordination.  The downside is that the database of
       name-to-key associations may become burdensome to maintain.
 
-   o  The host name-to-key association is certified by a trusted
+>  o  The host name-to-key association is certified by a trusted
       certification authority (CA).  The client only knows the CA root
       key, and can verify the validity of all host keys certified by
       accepted CAs.
