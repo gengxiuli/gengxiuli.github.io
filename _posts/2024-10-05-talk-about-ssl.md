@@ -8,7 +8,7 @@ tags:  ssl tls ssh http https nginx apache openssl
 
 上一篇文章谈了谈关于 SSH 的那些事儿，对于系统性理解 SSH 有指导作用，这一篇谈一谈 SSL 的那些事儿，二者有类似也有差异的地方，看完两篇文章后，这些异同点自然就体现了出来。另外注意本文提到 SSL 的时候都是大写形式，因为这是一项技术，而不是某个工具或者命令。
 
-其实最近刚刚使用了 Let's Encropyt 在网站上部署了 HTTPS 服务，而 HTTPS 依赖的正是 SSL/TLS 技术，这里的 TLS 是比 SSL 更新的标准，可以认为是 SSL 的继承者，TLS 技术标准工作由 IETF 中的The TLS (Transport Layer Security) working group 负责完成。在[工作组介绍页面](https://datatracker.ietf.org/wg/tls/about)中提及了 SSL 和 TLS 的相关 RFC:
+其实最近刚刚使用了 Let's Encropyt 在网站上部署了 HTTPS 服务，参考的文章是[免费 HTTPS 证书-从 StartSSL 到 Let's Encrypt](https://yangwenbo.com/articles/free-https-cert-startssl-to-letsencrypt.html)。而 HTTPS 依赖的正是 SSL/TLS 技术，这里的 TLS 是比 SSL 更新的标准，可以认为是 SSL 的继承者，TLS 技术标准工作由 IETF 中的The TLS (Transport Layer Security) working group 负责完成。在[工作组介绍页面](https://datatracker.ietf.org/wg/tls/about)中提及了 SSL 和 TLS 的相关 RFC:
 
 > The basis for the work was SSL (Secure Socket Layer) v3.0 [RFC6101]. The TLS working group has completed a series of specifications that describe the TLS protocol v1.0 [RFC2246], v1.1 [RFC4346], v1.2 [RFC5246], and v1.3 [RFC8446], and DTLS (Datagram TLS) v1.0 [RFC4347], v1.2 [RFC6347], and v1.3 [draft-ietf-tls-dtls13], as well as extensions to the protocols and ciphersuites.
 
@@ -47,3 +47,10 @@ Apache [Apache SSL/TLS Encryption](https://httpd.apache.org/docs/2.4/ssl/)
 > The Apache HTTP Server module mod_ssl provides an interface to the **OpenSSL** library, which provides Strong Encryption using the Secure Sockets Layer and Transport Layer Security protocols.
 
 OpenSSL 在 2014 年 4 月 还出现过一次影响比较大的漏洞，具体是其在 2012 年 12 月引入的heartbeat 扩展功能，其代码中存在缓冲区溢出 bug，可能导致服务器被恶意程序攻击，具体可以参考 Wiki 页面[Heartbleed](https://en.m.wikipedia.org/wiki/Heartbleed)。这次影响范围之大还体现在，专门有一个关于这个问题的网站[https://heartbleed.com](https://heartbleed.com)。这个网站详细解释了这个 bug 的影响，有兴趣可以移步浏览，其中需要注意的是，这个 bug 是 OpenSSL 实现中引入的问题，而不是 SSL/TLS 加密机制本身设计的问题。
+
+其他参考资料
+1. [What is SSL, TLS & HTTPS?](https://www.digicert.com/what-is-ssl-tls-and-https)
+2. [What is SSL? | SSL definition](https://www.cloudflare.com/learning/ssl/what-is-ssl)
+3. [What is TLS (Transport Layer Security)?](https://www.cloudflare.com/learning/ssl/transport-layer-security-tls/)
+4. [What is SSL/TLS: An In-Depth Guide](https://www.ssl.com/article/what-is-ssl-tls-an-in-depth-guide)
+5. [What is an SSL certificate – Definition and Explanation](https://www.kaspersky.com/resource-center/definitions/what-is-a-ssl-certificate)
