@@ -34,6 +34,8 @@ SSL/TLS最被人熟知的实现就是[OpenSSL](https://www.openssl.org/)，由�
 
 > Currently BoringSSL is the SSL library in Chrome/Chromium, Android (but it's not part of the NDK) and a number of other apps/programs.
 
+关于BoringSSL的技术细节，以及和OpenSSL之间的差异，可以参考[boringSSL研究笔记](https://hxndg.github.io/2021/04/12/boringSSL%E7%A0%94%E7%A9%B6%E7%AC%94%E8%AE%B0/)这篇文章。
+
 除了上面的客户端浏览器之外，开源Web服务器Nginx和Apache都支持ssl模块，而这些模块背后使用的都是OpenSSL。
 
 Nginx [Module ngx_http_ssl_module](https://nginx.org/en/docs/http/ngx_http_ssl_module.html)
