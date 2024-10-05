@@ -20,4 +20,4 @@ tags:   SSL https
 
 > As of 24 August 2020, 147 root certificates, representing 52 organizations, are trusted in the Mozilla Firefox web browser, 168 root certificates, representing 60 organizations, are trusted by macOS, and 255 root certificates, representing 101 organizations, are trusted by Microsoft Windows. As of Android 4.2 (Jelly Bean), Android currently contains over 100 CAs that are updated with each release.
 
-SSL/TLS最被人熟知的实现就是[openssl](https://www.openssl.org/)。
+SSL/TLS最被人熟知的实现就是[openssl](https://www.openssl.org/)，由于几乎所有需要使用HTTPS服务的客户端和服务器都需要SSL/TLS功能，所以openssl也被大量广泛的使用。
