@@ -50,7 +50,7 @@ OpenSSL 在 2014 年 4 月 还出现过一次影响比较大的漏洞，具体�
 
 其他参考资料
 1. [What is SSL, TLS & HTTPS?](https://www.digicert.com/what-is-ssl-tls-and-https)
-2. [What is SSL? | SSL definition](https://www.cloudflare.com/learning/ssl/what-is-ssl)
+2. [What is SSL? SSL definition](https://www.cloudflare.com/learning/ssl/what-is-ssl)
 3. [What is TLS (Transport Layer Security)?](https://www.cloudflare.com/learning/ssl/transport-layer-security-tls/)
 4. [What is SSL/TLS: An In-Depth Guide](https://www.ssl.com/article/what-is-ssl-tls-an-in-depth-guide)
 5. [What is an SSL certificate – Definition and Explanation](https://www.kaspersky.com/resource-center/definitions/what-is-a-ssl-certificate)
