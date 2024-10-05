@@ -20,4 +20,10 @@ tags:   SSL https
 
 > As of 24 August 2020, 147 root certificates, representing 52 organizations, are trusted in the Mozilla Firefox web browser, 168 root certificates, representing 60 organizations, are trusted by macOS, and 255 root certificates, representing 101 organizations, are trusted by Microsoft Windows. As of Android 4.2 (Jelly Bean), Android currently contains over 100 CAs that are updated with each release.
 
-SSL/TLS最被人熟知的实现就是[openssl](https://www.openssl.org/)，由于几乎所有需要使用HTTPS服务的客户端和服务器都需要SSL/TLS功能，所以openssl也被大量广泛的使用。Google的Chrome和Microsoft的Edge浏览器也使用了openssl，但是他们使用fork的方式
+SSL/TLS最被人熟知的实现就是[openssl](https://www.openssl.org/)，由于几乎所有需要使用HTTPS服务的客户端和服务器都需要SSL/TLS功能，所以openssl也被大量广泛的使用。Google的Chrome和Microsoft的Edge浏览器也使用了openssl，但是他们使用fork+patch的方式创建了一个项目[boringssl](https://github.com/google/boringssl)，其中项目介绍中写到：
+
+> BoringSSL is a fork of OpenSSL that is designed to meet Google's needs.
+
+> Although BoringSSL is an open source project, it is not intended for general use, as OpenSSL is. We don't recommend that third parties depend upon it. Doing so is likely to be frustrating because there are no guarantees of API or ABI stability.
+
+也就是说，这个项目是Google为了自己的产品需要而创建的，不能保证对于第三方使用的API或ABI兼容。
