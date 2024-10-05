@@ -30,6 +30,18 @@ SSL/TLS最被人熟知的实现就是[OpenSSL](https://www.openssl.org/)，由�
 
 > BoringSSL arose because Google used OpenSSL for many years in various ways and, over time, built up a large number of patches that were maintained while tracking upstream OpenSSL. As Google's product portfolio became more complex, more copies of OpenSSL sprung up and the effort involved in maintaining all these patches in multiple places was growing steadily.
 
-总结起来就是这样自己使用起来很灵活，既可以很快根据特定需要作出修改，不用考虑合入OpenSSL主线，还可以同步OpenSSL upstream的修改，及时借鉴开源的贡献。但这种方式需要很强的研发实力，也只有Google这种级别的公司可以做到。确实，这种使用方法看似操作简单，不过能做出Google几个产品这种级别的，而且能开源出来BoringSSL的却不多。
+总结起来就是这样自己使用起来很灵活，既可以很快根据特定需要作出修改，不用考虑合入OpenSSL主线，还可以同步OpenSSL upstream的修改，及时借鉴开源的贡献。但这种方式需要很强的研发实力，也只有Google这种级别的公司可以做到。确实，这种使用方法看似操作简单，不过能做出Google下面几个产品这种级别的，而且能开源出来BoringSSL的却不多。
 
 > Currently BoringSSL is the SSL library in Chrome/Chromium, Android (but it's not part of the NDK) and a number of other apps/programs.
+
+除了上面的客户端浏览器之外，开源Web服务器Nginx和Apache都支持ssl模块，而这些模块背后使用的都是OpenSSL。
+
+Nginx [Module ngx_http_ssl_module](https://nginx.org/en/docs/http/ngx_http_ssl_module.html)
+
+> The ngx_http_ssl_module module provides the necessary support for HTTPS.
+This module is not built by default, it should be enabled with the --with-http_ssl_module configuration parameter.
+This module requires the OpenSSL library.
+
+Apache [Apache SSL/TLS Encryption](https://httpd.apache.org/docs/2.4/ssl/)
+
+> The Apache HTTP Server module mod_ssl provides an interface to the OpenSSL library, which provides Strong Encryption using the Secure Sockets Layer and Transport Layer Security protocols.
