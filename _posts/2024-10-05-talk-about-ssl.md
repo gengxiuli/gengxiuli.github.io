@@ -45,3 +45,5 @@ This module requires the **OpenSSL** library.
 Apache [Apache SSL/TLS Encryption](https://httpd.apache.org/docs/2.4/ssl/)
 
 > The Apache HTTP Server module mod_ssl provides an interface to the **OpenSSL** library, which provides Strong Encryption using the Secure Sockets Layer and Transport Layer Security protocols.
+
+OpenSSL 在 2014 年 4 月 还出现过一次影响比较大的漏洞，具体是其在 2012 年 12 月引入的heartbeat 扩展功能，其代码中存在缓冲区溢出 bug，可能导致服务器被恶意程序攻击，具体可以参考 Wiki 页面[Heartbleed](https://en.m.wikipedia.org/wiki/Heartbleed)。
