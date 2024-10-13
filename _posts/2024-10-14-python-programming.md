@@ -38,6 +38,6 @@ Python 易于学习和掌握，而且比较安全，但是不够快。上述这�
 
 > Click in three points:
 
-1. Arbitrary nesting of commands
-2. Automatic help page generation
-3. Supports lazy loading of subcommands at runtime
+> 1. Arbitrary nesting of commands
+> 2. Automatic help page generation
+> 3. Supports lazy loading of subcommands at runtime
