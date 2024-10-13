@@ -37,6 +37,7 @@ Python 易于学习和掌握，而且比较安全，但是不够快。上述这�
 > It aims to make the process of writing command line tools quick and fun while also preventing any frustration caused by the inability to implement an intended CLI API.
 
 > Click in three points:
- 1. Arbitrary nesting of commands
- 2. Automatic help page generation
- 3. Supports lazy loading of subcommands at runtime
+> 1. Arbitrary nesting of commands
+> 2. Automatic help page generation
+> 3. Supports lazy loading of subcommands at runtime
+
