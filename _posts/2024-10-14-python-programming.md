@@ -43,7 +43,7 @@ Python 易于学习和掌握，而且比较安全，但是不够快。上述这�
 
 一个简单的示例程序如下：
 
-`
+```
 import click
 
 @click.command()
@@ -57,4 +57,4 @@ def hello(count, name):
 
 if __name__ == '__main__':
     hello()
-`
+```
