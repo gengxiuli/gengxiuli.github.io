@@ -41,9 +41,9 @@ Python 易于学习和掌握，而且比较安全，但是不够快。上述这�
 > 2. Automatic help page generation
 > 3. Supports lazy loading of subcommands at runtime
 
-一个简单的示例程序如下：
+可见 Click 是一种 Python 实现的简单通用命令行工具，比 C 语言中的 getopt 功能更为强大。一个简单的示例程序如下：
 
-```
+```python
 import click
 
 @click.command()
@@ -57,4 +57,13 @@ def hello(count, name):
 
 if __name__ == '__main__':
     hello()
+```
+
+执行结果如下
+```
+python hello.py --count=3
+Your name: John
+Hello John!
+Hello John!
+Hello John!
 ```
