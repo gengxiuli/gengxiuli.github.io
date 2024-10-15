@@ -41,3 +41,20 @@ Python 易于学习和掌握，而且比较安全，但是不够快。上述这�
 > 2. Automatic help page generation
 > 3. Supports lazy loading of subcommands at runtime
 
+一个简单的示例程序如下：
+
+`
+import click
+
+@click.command()
+@click.option('--count', default=1, help='Number of greetings.')
+@click.option('--name', prompt='Your name',
+              help='The person to greet.')
+def hello(count, name):
+    """Simple program that greets NAME for a total of COUNT times."""
+    for x in range(count):
+        click.echo(f"Hello {name}!")
+
+if __name__ == '__main__':
+    hello()
+`
