@@ -60,10 +60,23 @@ if __name__ == '__main__':
 ```
 
 执行结果如下
-```
-python hello.py --count=3
+```shell
+$ python hello.py --count=3
 Your name: John
 Hello John!
 Hello John!
 Hello John!
+```
+
+帮助信息如下
+```shell
+python hello.py --help
+Usage: hello.py [OPTIONS]
+
+  Simple program that greets NAME for a total of COUNT times.
+
+Options:
+  --count INTEGER  Number of greetings.
+  --name TEXT      The person to greet.
+  --help           Show this message and exit.
 ```
