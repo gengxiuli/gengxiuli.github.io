@@ -59,7 +59,7 @@ if __name__ == '__main__':
     hello()
 ```
 
-执行结果如下
+程序的执行结果如下
 ```shell
 $ python hello.py --count=3
 Your name: John
@@ -68,9 +68,9 @@ Hello John!
 Hello John!
 ```
 
-帮助信息如下
+生成的帮助信息如下
 ```shell
-python hello.py --help
+$ python hello.py --help
 Usage: hello.py [OPTIONS]
 
   Simple program that greets NAME for a total of COUNT times.
@@ -80,3 +80,5 @@ Options:
   --name TEXT      The person to greet.
   --help           Show this message and exit.
 ```
+
+可以看到 Click 实现的命令支持交互式和非交互式两种，分别适用于人机交互和脚本运行两种场景，而且帮助信息全面完整。
