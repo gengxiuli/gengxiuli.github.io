@@ -1,14 +1,14 @@
 ---
 layout: post
-title:  "Python 编程"
+title:  "SONiC 中的 Python 编程"
 date:   2024-10-14
 category: programming
-tags:   python
+tags:   python sonic click tiobe
 ---
 
 工作这些年的主力开发语言是 C/C++，确切地说是以 C 语言为主。最近一些年由于在 Linux 下开发，Shell 脚本语言用的也多了一些，各种编译构建，服务加载，系统监控等都可以通过 Shell 来实现。除此之外，在设备脚本执行，自动化测试等场景也涉及到了 Python，但是相对于 C 和 Shell，使用量还是少很多。
 
-最近在深入研究交换机开源操作系统 SONiC，发现其中大量用到了 Python 语言，同时看了一下 [TIOBE](https://www.tiobe.com/tiobe-index/） 上的指数，Python 最近几年的排名已经上升到和 C/C++，Java 并列的程度了，在这这篇文章时(2024 年 10 月)，Python 已经排在了第一位，前五名如下：
+最近在深入研究交换机开源操作系统 SONiC，发现其中大量用到了 Python 语言，同时看了一下 [TIOBE](https://www.tiobe.com/tiobe-index/)上的指数，Python 最近几年的排名已经上升到和 C/C++，Java 并列的程度了，在这这篇文章时(2024 年 10 月)，Python 已经排在了第一位，前五名如下：
 
 1. python
 2. C++
@@ -82,3 +82,5 @@ Options:
 ```
 
 可以看到 Click 实现的命令支持交互式和非交互式两种，分别适用于人机交互和脚本运行两种场景，而且帮助信息全面完整。Python 示例实现中还用到了装饰器 decorators 字符@，这让代码实现起来简单而强大。
+
+除此之外，SONiC中还有大量组件使用了 Python，具体可以参考[sonic-buildimage](https://github.com/sonic-net/sonic-buildimage/tree/master/src)中的 src 目录。
