@@ -81,6 +81,6 @@ Options:
   --help           Show this message and exit.
 ```
 
-可以看到 Click 实现的命令支持交互式和非交互式两种，分别适用于人机交互和脚本运行两种场景，而且帮助信息全面完整。Python 示例实现中还用到了装饰器 decorators 字符@，这让代码实现起来简单而强大。
+可以看到 Click 实现的命令支持交互式和非交互式两种，分别适用于人机交互和脚本运行两种场景，而且帮助信息全面完整。Python 示例实现中还用到了装饰器 decorators 字符@，这让代码实现起来简单而强大。关于 decorators 的详细原理分析和实际应用，可以参考 coolshell 上的一篇文章[Python修饰器的函数式编程](https://coolshell.org/articles/11265.html/)。
 
 除此之外，SONiC中还有大量组件使用了 Python，具体可以参考[sonic-buildimage](https://github.com/sonic-net/sonic-buildimage/tree/master/src)中的 src 目录。
