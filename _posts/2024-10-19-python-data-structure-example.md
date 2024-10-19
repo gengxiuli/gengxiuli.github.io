@@ -19,13 +19,18 @@ words = []
 freqs  = []
 
 def word_feq_count()
+    s = 0
+    e = 0
     for c in text
-        if c is 
-            if i = words.index(w) > 0
+        if c is ' '
+            i = words.index(w)
+            if i > 0
                 freqs[i] += 1
             else
                 words.append(text[s,e])
                 freqs.append(1)
+        s = 0
+        e = 0
     top = freqs
     top.sort()
     for n in top
