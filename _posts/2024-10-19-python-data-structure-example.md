@@ -13,7 +13,9 @@ List 列表
 一个示例程序：统计一段文本中单词个数，并输出频率最高的指定个数，比如 Top 10。
 
 ```python
+text = 'this is a test text，it contain little words but for test ok'
 
+```
 
 Tuple 元组
 
