@@ -21,6 +21,7 @@ freqs  = []
 def word_feq_count()
     s = 0
     e = 0
+    m = 0
     for c in text
         if c is ' '
             i = words.index(w)
@@ -29,8 +30,9 @@ def word_feq_count()
             else
                 words.append(text[s,e])
                 freqs.append(1)
-        s = 0
-        e = 0
+            s = e
+            e = m
+        m += 1
     top = freqs
     top.sort()
     for n in top
