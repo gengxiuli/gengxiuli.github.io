@@ -15,27 +15,38 @@ List 列表
 ```python
 #!/bin/python3
 
-from string import Template
+import string
+#from string import Template
 #text = 'this is a test text，it contain little words but for test ok'
 #print(text)
+
+#sym = [',','.','?','!']
+sym = string.punctuation
+
+def is_separator(c):
+    if c.isspace():
+        return True
+    if c in sym:
+        return True
+    return False
 
 def word_freq_count():
     words = []
     freqs  = []
     tops = []
-    text = 'this is a test text，it contain little words but for test ok'
+    text = 'this is a test text,it contain little words but for test ok,what do you think about it?,it is a question.'
     #text = Template(str)
     #text.substitute(who = ',',what = ' ')
-    text.replace(',',' ')
+    #text.replace(',',' ')
     print(text)
     s = 0
     e = 0
     m = 0
     for c in text:
         e = m
-        if c.isspace():
+        if is_separator(c):
             w = text[s:e]
-            if w.isspace():
+            if is_separator(w):
                 m += 1
                 s += 1
                 continue
@@ -43,7 +54,7 @@ def word_freq_count():
             if p > 0:
             #w = 'this'
                 i = words.index(w)
-                print(i)
+                #print(i)
             #if i > 0:
                 freqs[i] += 1
                 tops[i] += 1
@@ -66,6 +77,7 @@ def word_freq_count():
     #i = freqs.index(2)
     #print(i)
     print(words[i])
+    print(tops[0])
 
 word_freq_count()
 
