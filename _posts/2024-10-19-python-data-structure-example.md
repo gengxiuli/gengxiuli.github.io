@@ -13,31 +13,62 @@ List 列表
 一个示例程序：统计一段文本中单词个数，并输出频率最高的指定个数，比如 Top 10。
 
 ```python
-text = 'this is a test text，it contain little words but for test ok'
+#!/bin/python3
 
-words = []
-freqs  = []
+from string import Template
+#text = 'this is a test text，it contain little words but for test ok'
+#print(text)
 
-def word_feq_count()
+def word_freq_count():
+    words = []
+    freqs  = []
+    tops = []
+    text = 'this is a test text，it contain little words but for test ok'
+    #text = Template(str)
+    #text.substitute(who = ',',what = ' ')
+    text.replace(',',' ')
+    print(text)
     s = 0
     e = 0
     m = 0
-    for c in text
-        if c is ' '
-            i = words.index(w)
-            if i > 0
+    for c in text:
+        e = m
+        if c.isspace():
+            w = text[s:e]
+            if w.isspace():
+                m += 1
+                s += 1
+                continue
+            p = words.count(w)
+            if p > 0:
+            #w = 'this'
+                i = words.index(w)
+                print(i)
+            #if i > 0:
                 freqs[i] += 1
-            else
-                words.append(text[s,e])
+                tops[i] += 1
+            else:
+                words.append(w)
                 freqs.append(1)
-            s = e
-            e = m
+                tops.append(1)
+            s = e + 1
         m += 1
-    top = freqs
-    top.sort()
-    for n in top
-        i = freqs(n)
-        print(word[i])
+    print(words)
+    print(freqs)
+    print(tops)
+    #top = freqs
+    tops.sort(reverse=True)
+    #print(freqs)
+    #print(top)
+    #for n in top:
+    #print(top[0])
+    i = freqs.index(tops[0])
+    #i = freqs.index(2)
+    #print(i)
+    print(words[i])
+
+word_freq_count()
+
 
 ```
 
