@@ -14,7 +14,6 @@ List 列表
 
 ```python
 text = 'this is a test text，it contain little words but for test ok'
-
 ```
 
 Tuple 元组
