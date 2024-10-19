@@ -14,6 +14,22 @@ List 列表
 
 ```python
 text = 'this is a test text，it contain little words but for test ok'
+
+words = []
+freqs  = []
+
+def word_feq_count()
+    num = len(text)
+    for c in text
+        if c is 
+            if i = words.index(w) > 0
+                freqs[i] += 1
+            else
+                words.append(text[s,e])
+                freqs.append(1)
+    top = freqs
+    top.sort()
+
 ```
 
 Tuple 元组
