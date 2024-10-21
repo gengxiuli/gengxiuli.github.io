@@ -58,6 +58,8 @@ month = ('Jan','Feb')
 r = range(0, 20, 2)
 
 可以通过range给list初始化
+```python
+
 list(range(10))
 [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 list(range(1, 11))
@@ -65,8 +67,10 @@ list(range(1, 11))
 list(range(0, 30, 5))
 [0, 5, 10, 15, 20, 25]
 
+```
+
 关于 List 的一些示例代码
-'''python
+```python
 
 ruits = ['orange', 'apple', 'pear', 'banana', 'kiwi', 'apple', 'banana']
 fruits.count('apple')
@@ -88,11 +92,11 @@ fruits
 
 fruits.pop()
 
-'''
+```
 
 关于Tuple的一些示例代码
 
-'''python
+```python
 
 t = 12345, 54321, 'hello!'
 t[0]
@@ -113,7 +117,8 @@ v = ([1, 2, 3], [3, 2, 1])
 v
 ([1, 2, 3], [3, 2, 1])
 
-'''
+```
+
 一个示例程序：统计一段文本中单词个数，并输出频率最高的指定个数，比如 Top 10。
 
 ```python
