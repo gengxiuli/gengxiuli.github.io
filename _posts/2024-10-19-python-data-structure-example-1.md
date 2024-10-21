@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "Python 数据结构代码示例"
-date:   2024-08-24
+title:  "Python 数据结构代码示例(一)"
+date:   2024-10-19
 category: programming
 tags:   python
 ---
@@ -27,7 +27,7 @@ List是一种序列类型(Sequence Types), 它包含List，Tuple和Range，序�
 | s.index(x[, i[, j]]) |       index of the first occurrence of *x* in *s* (at or after index *i* and before index *j*) |
 | s.count(x)   |                 total number of occurrences of *x* in *s* |
 
-List是可修改序列类型(mutable Sequence Types)，而Tuple是不可修改序列类型(Immutable Sequence Types)，不可修改意味着元素个数在定以后不可改变，元素内容也不可改变，所以Tuple功能要比List少很多。
+List是可修改序列类型(mutable Sequence Types)，而Tuple和Range是不可修改序列类型(Immutable Sequence Types)，不可修改意味着元素个数在定以后不可改变，元素内容也不可改变，所以Tuple和Range功能要比List少很多。
 
 下表是List支持的一些操作
 
@@ -140,6 +140,3 @@ word_freq_count()
 参考资料：
 1. [https://docs.python.org/3/library/stdtypes.html](https://docs.python.org/3/library/stdtypes.html)
 2. [https://docs.python.org/3/tutorial/datastructures.html](https://docs.python.org/3/tutorial/datastructures.html)
-Set 集合
-
-Dict 字典
