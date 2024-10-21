@@ -65,6 +65,55 @@ list(range(1, 11))
 list(range(0, 30, 5))
 [0, 5, 10, 15, 20, 25]
 
+关于 List 的一些示例代码
+'''python
+
+ruits = ['orange', 'apple', 'pear', 'banana', 'kiwi', 'apple', 'banana']
+fruits.count('apple')
+
+fruits.count('tangerine')
+
+fruits.index('banana')
+
+fruits.index('banana', 4)  # Find next banana starting at position 4
+
+fruits.reverse()
+fruits
+
+fruits.append('grape')
+fruits
+
+fruits.sort()
+fruits
+
+fruits.pop()
+
+'''
+
+关于Tuple的一些示例代码
+
+'''python
+
+t = 12345, 54321, 'hello!'
+t[0]
+12345
+t
+(12345, 54321, 'hello!')
+# Tuples may be nested:
+u = t, (1, 2, 3, 4, 5)
+u
+((12345, 54321, 'hello!'), (1, 2, 3, 4, 5))
+# Tuples are immutable:
+t[0] = 88888
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: 'tuple' object does not support item assignment
+# but they can contain mutable objects:
+v = ([1, 2, 3], [3, 2, 1])
+v
+([1, 2, 3], [3, 2, 1])
+
+'''
 一个示例程序：统计一段文本中单词个数，并输出频率最高的指定个数，比如 Top 10。
 
 ```python
