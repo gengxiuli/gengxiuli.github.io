@@ -15,7 +15,7 @@ List是一种序列类型(Sequence Types), 它包含List，Tuple和Range，序�
 | Operation | Result |
 | ----------- | ----------- |
 | x in s | `True` if an item of *s* is equal to *x*, else `False` |
-| x not in s   | `False` if an item of *s* is equal to *x*, else `True` |
+| x not in s   | `False` if an item of *s* is equal to *x*, else `True` |
 | s + t   | the concatenation of *s* and *t* |
 | `s * n` or `n * s`  | equivalent to adding *s* to itself *n* times |
 | s[i]     | *i*th item of *s*, origin 0 |
@@ -27,7 +27,7 @@ List是一种序列类型(Sequence Types), 它包含List，Tuple和Range，序�
 | s.index(x[, i[, j]]) | index of the first occurrence of *x* in *s* (at or after index *i* and before index *j*) |
 | s.count(x)   | total number of occurrences of *x* in *s* |
 
-List是可修改序列类型(mutable Sequence Types)，而Tuple和Range是不可修改序列类型(Immutable Sequence Types)，不可修改意味着元素个数在定以后不可改变，元素内容也不可改变，所以Tuple和Range功能要比List少很多。
+List是可修改序列类型(mutable Sequence Types)，而Tuple和Range是不可修改序列类型(Immutable Sequence Types)，不可修改意味着元素个数在定义以后不可改变，元素内容也不可改变，所以Tuple和Range功能要比List少很多。
 
 下表是List支持的一些操作
 
