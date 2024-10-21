@@ -126,11 +126,7 @@ v
 #!/bin/python3
 
 import string
-#from string import Template
-#text = 'this is a test text，it contain little words but for test ok'
-#print(text)
 
-#sym = [',','.','?','!']
 sym = string.punctuation
 
 def is_separator(c):
@@ -144,10 +140,7 @@ def word_freq_count():
     words = []
     freqs  = []
     tops = []
-    text = 'this is a test text,it contain little words but for test ok,what do you think about it?,it is a question.'
-    #text = Template(str)
-    #text.substitute(who = ',',what = ' ')
-    #text.replace(',',' ')
+    text = 'this is a test text,it contain little words but for test ok,what do you think about it?,it is a question?'
     print(text)
     s = 0
     e = 0
@@ -162,10 +155,7 @@ def word_freq_count():
                 continue
             p = words.count(w)
             if p > 0:
-            #w = 'this'
                 i = words.index(w)
-                #print(i)
-            #if i > 0:
                 freqs[i] += 1
                 tops[i] += 1
             else:
@@ -177,15 +167,8 @@ def word_freq_count():
     print(words)
     print(freqs)
     print(tops)
-    #top = freqs
     tops.sort(reverse=True)
-    #print(freqs)
-    #print(top)
-    #for n in top:
-    #print(top[0])
     i = freqs.index(tops[0])
-    #i = freqs.index(2)
-    #print(i)
     print(words[i])
     print(tops[0])
 
