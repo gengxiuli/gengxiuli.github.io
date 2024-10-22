@@ -1,0 +1,178 @@
+---
+layout: post
+title:  "Python 数据结构代码示例(二)"
+date:   2024-10-22
+category: programming
+tags:   python
+---
+
+上一篇文章展示了 List 列表, Tuple 元组和Range范围的一些定义和用法，这篇文章继续介绍 Set 集合以及 Dict 字典。
+
+List是一种序列类型(Sequence Types), 它包含List，Tuple和Range，序列类型支持一些通用操作：
+
+| Operation | Result |
+| ----------- | ----------- |
+| x in s | `True` if an item of *s* is equal to *x*, else `False` |
+| x not in s   | `False` if an item of *s* is equal to *x*, else `True` |
+| s + t   | the concatenation of *s* and *t* |
+| `s * n` or `n * s`  | equivalent to adding *s* to itself *n* times |
+| s[i]     | *i*th item of *s*, origin 0 |
+| s[i:j]  | slice of *s* from *i* to *j* |
+| s[i:j:k]  | slice of *s* from *i* to *j* with step *k* |
+| len(s) | length of *s* |
+| min(s)  | smallest item of *s* |
+| max(s)  | largest item of *s* |
+| s.index(x[, i[, j]]) | index of the first occurrence of *x* in *s* (at or after index *i* and before index *j*) |
+| s.count(x)   | total number of occurrences of *x* in *s* |
+
+List是可修改序列类型(mutable Sequence Types)，而Tuple和Range是不可修改序列类型(Immutable Sequence Types)，不可修改意味着元素个数在定义以后不可改变，元素内容也不可改变，所以Tuple和Range功能要比List少很多。
+
+下表是List支持的一些操作
+
+| Operation | Result |
+| ----------- | ----------- |
+| s[i] = x |  item i of s is replaced by x |
+| s[i:j] = t | slice of s from i to j is replaced by the contents of the iterable t |
+| del s[i:j] | same as s[i:j] = [] |
+| s[i:j:k] = t | the elements of s[i:j:k] are replaced by those of t |
+| del s[i:j:k] | removes the elements of s[i:j:k] from the list |
+|s.append(x) | appends x to the end of the sequence (same as s[len(s):len(s)] = [x]) |
+| s.clear() | removes all items from s (same as del s[:]) |
+| s.copy() | creates a shallow copy of s (same as s[:]) |
+| s.extend(t) or s += t | extends s with the contents of t (for the most part the same as s[len(s):len(s)] = t) |
+| s *= n | updates s with its contents repeated n times |
+| s.insert(i, x) | inserts x into s at the index given by i (same as s[i:i] = [x]) |
+| s.pop() or s.pop(i) | retrieves the item at i and also removes it from s |
+| s.remove(x) | removes the first item from s where s[i] is equal to x |
+| s.reverse() | reverses the items of s in place |
+
+List的初始化
+fruit = ['apple', 'banana']
+
+Tuple的初始化
+month = ('Jan','Feb')
+
+范围的初始化
+r = range(0, 20, 2)
+
+可以通过range给list初始化
+```python
+
+list(range(10))
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+list(range(1, 11))
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+list(range(0, 30, 5))
+[0, 5, 10, 15, 20, 25]
+
+```
+
+关于 List 的一些示例代码
+```python
+
+fruits = ['orange', 'apple', 'pear', 'banana', 'kiwi', 'apple', 'banana']
+fruits.count('apple')
+2
+fruits.count('tangerine')
+0
+fruits.index('banana')
+3
+fruits.index('banana', 4)  # Find next banana starting at position 4
+6
+fruits.reverse()
+fruits
+['banana', 'apple', 'kiwi', 'banana', 'pear', 'apple', 'orange']
+fruits.append('grape')
+fruits
+['banana', 'apple', 'kiwi', 'banana', 'pear', 'apple', 'orange', 'grape']
+fruits.sort()
+fruits
+['apple', 'apple', 'banana', 'banana', 'grape', 'kiwi', 'orange', 'pear']
+fruits.pop()
+'pear'
+
+```
+
+关于Tuple的一些示例代码
+
+```python
+
+t = 12345, 54321, 'hello!'
+t[0]
+12345
+t
+(12345, 54321, 'hello!')
+# Tuples may be nested:
+u = t, (1, 2, 3, 4, 5)
+u
+((12345, 54321, 'hello!'), (1, 2, 3, 4, 5))
+# Tuples are immutable:
+t[0] = 88888
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: 'tuple' object does not support item assignment
+# but they can contain mutable objects:
+v = ([1, 2, 3], [3, 2, 1])
+v
+([1, 2, 3], [3, 2, 1])
+
+```
+
+一个示例程序：统计一段文本中单词个数，并输出频率最高的指定个数，比如 Top 10。
+
+```python
+#!/bin/python3
+
+import string
+
+sym = string.punctuation
+
+def is_separator(c):
+    if c.isspace():
+        return True
+    if c in sym:
+        return True
+    return False
+
+def word_freq_count():
+    words = []
+    freqs  = []
+    tops = []
+    text = 'this is a test text,it contain little words but for test ok,what do you think about it?,it is a question?'
+    print(text)
+    s = 0
+    e = 0
+    m = 0
+    for c in text:
+        e = m
+        if is_separator(c):
+            w = text[s:e]
+            if is_separator(w):
+                m += 1
+                s += 1
+                continue
+            p = words.count(w)
+            if p > 0:
+                i = words.index(w)
+                freqs[i] += 1
+                tops[i] += 1
+            else:
+                words.append(w)
+                freqs.append(1)
+                tops.append(1)
+            s = e + 1
+        m += 1
+    print(words)
+    print(freqs)
+    print(tops)
+    tops.sort(reverse=True)
+    i = freqs.index(tops[0])
+    print(words[i])
+    print(tops[0])
+
+word_freq_count()
+```
+
+参考资料：
+1. [https://docs.python.org/3/library/stdtypes.html](https://docs.python.org/3/library/stdtypes.html)
+2. [https://docs.python.org/3/tutorial/datastructures.html](https://docs.python.org/3/tutorial/datastructures.html)
