@@ -3,7 +3,7 @@ layout: post
 title:  "Python 数据结构代码示例(一)"
 date:   2024-10-19
 category: programming
-tags:   python
+tags:   python list tuple range
 ---
 
 上一篇文章[SONiC 中的 Python 编程](https://gengxiuli.com/posts/python-programming-in-sonic/)中提到了 Python 的具体应用，为了打好基础，我们先复习一下 Python 内置的数据结构，并编写一些示例代码，展示一下如何使用他们。
