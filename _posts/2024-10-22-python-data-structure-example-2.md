@@ -176,7 +176,6 @@ def word_freq_count():
                 m += 1
                 s += 1
                 continue
-            p = words.count(w)
             if w in words:
                 words[w] += 1
             else:
