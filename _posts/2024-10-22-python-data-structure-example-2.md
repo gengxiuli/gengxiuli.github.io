@@ -184,7 +184,19 @@ def word_freq_count():
         m += 1
     print(words)
 
+    freqs = {}
+    for k,v in words.items():
+        print(k,v)
+        if v in freqs:
+            freqs[v].append(k)
+        else:
+            freqs[v] = list(k)
+
+    for k,v in freqs.items():
+        print(k,v)
+
 word_freq_count()
+
 ```
 
 参考资料：
