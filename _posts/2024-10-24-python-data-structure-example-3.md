@@ -71,6 +71,21 @@ C语言之后的C++增加了很多内置类型，比如vector、list、deque、s
 
 4. 索引遍历的实现方法
 
+```python
+    count = 100
+    start = 0
+    end = start + count
+    for x in range(start,end):
+        print(x)
+```
+
+    上述代码实现x从start到end的编译，操作是简单打印x的值。这里range动态生成范围序列，实际值存放了start和end两个变量，中间范围根据计算动态生成。
+    
 5. Key/Value的实现方法
 
+    在前两篇文章中，实现了一个统计一段文本中单词个数，并输出频率最高的指定个数的程序。分别用List和Dict的方式实现了key/value结构，其中List方法使用了两个List,一个存放key一个存放vlue，同步添加和删除。
+    Dict则直接提供了key/value的数据结构，其中key是必须保证唯一。在生成完Dict后还需要根据value聚合成新的Dict，也就是将前一个Dict中的value对应的key合并成List，这样新的Dict的key就是出现次数，而value就是包含的所有单词。注意新的Dict中的value其实不是普通值，而是一个List列表。这种数据结构中嵌套其他数据结构的方法，在Python会经常用到，也是实现很多复杂功能的强大工具。当然，通过C语言也可以实现类似的效果，但是要编写很多代码，这也体现了Python丰富数据结构的优势。
+
 6. 元素是否允许重复的实现方法
+
+    通过for x in y来判断y中是否包含x,注意这里的y可以是List也可以是Set和Dict，如果是Dict则查找的是key中是否包含x。注意如果y是List，因为列表本质是按索引查找，如果查找值则时间复杂度为O(n)，所以遇到查找元素值的场景，尽量使用Set或者Dict数据结构，因为它们内部通过hash算法实现了高效的查找，时间复杂度一般是O(1)。
