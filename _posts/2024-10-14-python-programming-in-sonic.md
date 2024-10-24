@@ -19,11 +19,11 @@ tags:   python sonic click tiobe
 TIOBE中是这么分析的：
 
 > TIOBE Index for October 2024
-
+>
 > October Headline: Rust is slowly but steadily approaching the TIOBE index top 10
-
+>
 > In today's world, the amount of available data of whatever kind is increasing rapidly, and the demand to harvest this data is increasing accordingly. Hence, there is now a need for programming languages that are good in data manipulation, number crunching and being fast. Next to this, there are two other important characteristics high on everybody's list: languages should be easy to learn and should be secure. "Easy to learn" because the resource pool of skilled software engineers is drying up and "secure" because of continuous cyber threats. Languages that have these three traits (being fast, being secure and easy to learn), have a good time now.
-
+>
 > **King of all, Python, is easy to learn and secure, but not fast**. Hence, engineers are frantically looking for fast alternatives for Python. C++ is an obvious candidate, but it is considered "not secure" because of its explicit memory management. Rust is another candidate, although not easy to learn. Rust is, thanks to its emphasis on security and speed, making its way to the TIOBE index top 10 now.
 
 Python 易于学习和掌握，而且比较安全，但是不够快。上述这些特点已经让 Python 可以应付很多使用场景了。是不是够快可能也不是使用者能左右的，因为这是编程语言本身实现决定的，就像 C++ 虽然没有 C 快，但是这也不妨碍 C++ 的流行。
@@ -33,9 +33,9 @@ Python 易于学习和掌握，而且比较安全，但是不够快。上述这�
 比如SONiC中的命令行功能实现就依赖于 Python 的[Click](https://palletsprojects.com/projects/click/)，因为命令行是网络设备中最传统的用户交互方式，已经有相当多的成熟实现，比如最经典的Cisco IOS命令行风格，开源路由协议Frrouting就是模仿的这种风格。SONiC 使用的Click是通过 Python实现的命令行功能，其官网介绍如下：
 
 > Click is a Python package for creating beautiful command line interfaces in a composable way with as little code as necessary. It's the "Command Line Interface Creation Kit". It's highly configurable but comes with sensible defaults out of the box.
-
+>
 > It aims to make the process of writing command line tools quick and fun while also preventing any frustration caused by the inability to implement an intended CLI API.
-
+>
 > Click in three points:
 > 1. Arbitrary nesting of commands
 > 2. Automatic help page generation
