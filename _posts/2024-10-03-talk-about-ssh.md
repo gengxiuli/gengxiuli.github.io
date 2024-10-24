@@ -27,19 +27,19 @@ SSH 最广为人知的用处就是远程登录了，它比 telnet 更安全，�
    client is really talking to the correct server.  For this to be
    possible, the client must have a priori knowledge of the server's
    public host key.
-
+>
 >  Two different trust models can be used:
 
 >  o  The client has a local database that associates each host name (as
       typed by the user) with the corresponding public host key.  This
       method requires no centrally administered infrastructure, and no third-party coordination.  The downside is that the database of
       name-to-key associations may become burdensome to maintain.
-
+>
 >  o  The host name-to-key association is certified by a trusted
       certification authority (CA).  The client only knows the CA root
       key, and can verify the validity of all host keys certified by
       accepted CAs.
-
+>
 >  The second alternative eases the maintenance problem, since ideally
    only a single CA key needs to be securely stored on the client.  On
    the other hand, each host key must be appropriately certified by a
@@ -49,7 +49,7 @@ SSH 最广为人知的用处就是远程登录了，它比 telnet 更安全，�
 本文最开始提到的 SFTP，其实也是利用 SSH 提供的一种文件传输服务，它比 FTP 更安全。Wiki 上的介绍如下：
 
 > Compared to the SCP protocol, which only allows file transfers, the SFTP protocol allows for a range of operations on remote files which make it more like a remote file system protocol. An SFTP client's extra capabilities include resuming interrupted transfers, directory listings, and remote file removal. There is also support for all UNIX file types, including symbolic links.
-
+>
 > SFTP is not FTP run over SSH, but rather a new protocol designed from the ground up by the IETF SECSH working group. It is sometimes confused with Simple File Transfer Protocol.
 
 SFTP 与 SCP 协议比较起来有很多优点，注意这里并没有 与 FTP 比较，因为 SFTP 是重新设计的协议，并不是 FTP over SSH，而 SCP 是一种安全的文件拷贝协议，Wiki 介绍如下：
