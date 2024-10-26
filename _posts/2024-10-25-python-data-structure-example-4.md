@@ -21,7 +21,7 @@ appendleft(),extendleft(),popleft(),这些方法可以方便地在左侧添加�
 
 ### 3.defaultdict
 
-Defaultdict也是Dict从继承的一个子类，因此他拥有Dict的所有方法，同时他的创建参数中多了一个default_factory属性，默认是none。这个属性在内部会被Defaultdict的__missing__(key)方法调用，如果default_factory为none则会触发KeyError异常，如果default_factory不为none，则会为Defaultdict的key生成一个默认值，而__missing__()会被Dict中的__getitem__()调用，后者在访问字典中不存在的key时被调用。
+Defaultdict也是Dict从继承的一个子类，因此他拥有Dict的所有方法，同时他的创建参数中多了一个default_factory属性，默认是none。这个属性在内部会被Defaultdict的__missing__(key)方法调用，如果default_factory为none则会触发KeyError异常，如果default_factory不为none，则会为Defaultdict的key生成一个默认值，而__missing__()会被Dict中的__getitem__()调用，后者在访问字典中不存在的key时被调用。简单来说就是Defaultdict可以提供一种自定义工厂方法入口，来为不存在的key创建一个默认值。这在创建Dict字典的时候很有用，因为你需要处理key不存在和key存在两种情况，当default_factory属性是list时，就是动态创建了空列表，当属性是int就是动态创建了0整型值。
 
 参考资料
 1. <https://docs.python.org/3/library/collections.html>
