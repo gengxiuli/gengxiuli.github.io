@@ -16,9 +16,9 @@ SSH 最广为人知的用处就是远程登录了，它比 telnet 更安全，�
 [SSH 证书登录教程](https://www.ruanyifeng.com/blog/2020/07/ssh-certificate.html)这篇文章介绍了如何配置证书登录方式，其中对于证书登录有如下介绍：
 
 > 证书登录就是为了解决上面的缺点而设计的。它引入了一个证书颁发机构（Certificate1 authority，简称 CA），对信任的服务器颁发服务器证书，对信任的用户颁发用户证书。
-
+>
 > 登录时，用户和服务器不需要提前知道彼此的公钥，只需要交换各自的证书，验证是否可信即可。
-
+>
 > 证书登录的主要优点有两个：（1）用户和服务器不用交换公钥，这更容易管理，也具有更好的可扩展性。（2）证书可以设置到期时间，而公钥没有到期时间。针对不同的情况，可以设置有效期很短的证书，进一步提高安全性。
 
 其实SSH在协议[The Secure Shell (SSH) Protocol Architecture](https://datatracker.ietf.org/doc/html/rfc4251#section-4.1)中也提及了这种机制。
@@ -29,7 +29,7 @@ SSH 最广为人知的用处就是远程登录了，它比 telnet 更安全，�
    public host key.
 >
 >  Two different trust models can be used:
-
+>
 >  o  The client has a local database that associates each host name (as
       typed by the user) with the corresponding public host key.  This
       method requires no centrally administered infrastructure, and no third-party coordination.  The downside is that the database of
