@@ -18,6 +18,27 @@ Counter的value可以是任何整型值包括0和负数，这里的负数有点�
 
 因为Counter中的value固定是整型数字，所以还可以使用total()方法直接计算所有value总和，使用most_common(n)方法获取最大n个记录，这对于一些统计场景非常有用。
 
+示例代码
+
+```python
+
+# Tally occurrences of words in a list
+cnt = Counter()
+for word in ['red', 'blue', 'red', 'green', 'blue', 'blue']:
+    cnt[word] += 1
+
+cnt
+Counter({'blue': 3, 'red': 2, 'green': 1})
+
+# Find the ten most common words in Hamlet
+import re
+words = re.findall(r'\w+', open('hamlet.txt').read().lower())
+Counter(words).most_common(10)
+[('the', 1143), ('and', 966), ('to', 762), ('of', 669), ('i', 631),
+ ('you', 554),  ('a', 546), ('my', 514), 
+
+```
+
 ### 2.deque
 
 deque("double-ended queue") 双端队列，顾名思义，在头部或者尾部添加或者删除元素都可以做到O(1)时间复杂度，但是在队列中间添加或者删除元素，则平均时间复杂度会达到O(n)。
@@ -31,6 +52,63 @@ Python是怎么做到的呢，通过阅读deque的[代码实现](https://github.
 Deque除了支持List的一些方法外，还支持外左侧(left)的一些操作，比如
 appendleft(),extendleft(),popleft(),这些方法可以方便地在左侧添加和删除元素。
 
+示例代码
+
+```python
+
+from collections import deque
+d = deque('ghi')                 # make a new deque with three items
+for elem in d:                   # iterate over the deque's elements
+    print(elem.upper())
+G
+H
+I
+
+d.append('j')                    # add a new entry to the right side
+d.appendleft('f')                # add a new entry to the left side
+d                                # show the representation of the deque
+deque(['f', 'g', 'h', 'i', 'j'])
+
+d.pop()                          # return and remove the rightmost item
+'j'
+d.popleft()                      # return and remove the leftmost item
+'f'
+list(d)                          # list the contents of the deque
+['g', 'h', 'i']
+d[0]                             # peek at leftmost item
+'g'
+d[-1]                            # peek at rightmost item
+'i'
+
+list(reversed(d))                # list the contents of a deque in reverse
+['i', 'h', 'g']
+'h' in d                         # search the deque
+True
+d.extend('jkl')                  # add multiple elements at once
+d
+deque(['g', 'h', 'i', 'j', 'k', 'l'])
+d.rotate(1)                      # right rotation
+d
+deque(['l', 'g', 'h', 'i', 'j', 'k'])
+d.rotate(-1)                     # left rotation
+d
+deque(['g', 'h', 'i', 'j', 'k', 'l'])
+
+deque(reversed(d))               # make a new deque in reverse order
+deque(['l', 'k', 'j', 'i', 'h', 'g'])
+d.clear()                        # empty the deque
+d.pop()                          # cannot pop from an empty deque
+Traceback (most recent call last):
+    File "<pyshell#6>", line 1, in -toplevel-
+        d.pop()
+IndexError: pop from an empty deque
+
+d.extendleft('abc')              # extendleft() reverses the input order
+d
+deque(['c', 'b', 'a'])
+
+```
+
 ### 3.defaultdict
 
 Defaultdict也是Dict从继承的一个子类，因此他拥有Dict的所有方法，同时他的创建参数中多了一个default_factory属性，默认是none，顾名思义，这是一种生产默认值的工厂属性。
@@ -38,6 +116,26 @@ Defaultdict也是Dict从继承的一个子类，因此他拥有Dict的所有方�
 这个属性在内部会被Defaultdict的__missing__(key)方法调用，如果default_factory为none则会触发KeyError异常，如果default_factory不为none，则会为Defaultdict的key生成一个默认值，而__missing__()会被Dict中的__getitem__()调用，后者在访问字典中不存在的key时被调用。
 
 简单来说就是，Defaultdict可以提供一种自定义工厂方法入口，来为不存在的key创建一个默认值。这在创建Dict字典的时候很有用，因为你需要处理key不存在和key存在两种情况，当default_factory属性是list时，就是动态创建了空列表，当属性是int就是动态创建了0整型值。
+
+```python
+
+s = [('yellow', 1), ('blue', 2), ('yellow', 3), ('blue', 4), ('red', 1)]
+d = defaultdict(list)
+for k, v in s:
+    d[k].append(v)
+
+sorted(d.items())
+[('blue', [2, 4]), ('red', [1]), ('yellow', [1, 3])]
+
+s = 'mississippi'
+d = defaultdict(int)
+for k in s:
+    d[k] += 1
+
+sorted(d.items())
+[('i', 4), ('m', 1), ('p', 2), ('s', 4)]
+
+```
 
 参考资料
 1. <https://docs.python.org/3/library/collections.html>
