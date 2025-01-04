@@ -7,7 +7,7 @@ tags:   srv6
 ---
 
 [Segment Routing Part III: SRv6](https://www.amazon.com/Segment-Routing-Part-III-SRv6-ebook/dp/B0D6GWWRWH)英文版现在已经出版，Kinle版本可以购买，Amazon上的出版日期显示为：October 12, 2024。估计中文纸质版应该也不会等太久。
-[]
+
 从标题也可以看出，这个Part III的关注点就是Segment Routing over IPv6 (SRv6)。SRv6是这几年网络领域比较热门的技术了，国外和国内都有研究。
 
 [RFC 8754 IPv6 Segment Routing Header (SRH)](https://www.rfc-editor.org/rfc/rfc8754.html)和[RFC 8986
