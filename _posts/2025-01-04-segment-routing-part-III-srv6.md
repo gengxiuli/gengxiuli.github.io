@@ -6,7 +6,7 @@ category: networking
 tags:   srv6
 ---
 
-[Segment Routing Part III: SRv6](https://www.amazon.com/Segment-Routing-Part-III-SRv6-ebook/dp/B0D6GWWRWH)英文版现在已经出版，Kinle版本可以购买，Amazon上的出版日期显示为：October 12, 2024。估计中文纸质版应该也不会等太久。
+[Segment Routing Part III: SRv6](https://www.amazon.com/Segment-Routing-Part-III-SRv6-ebook/dp/B0D6GWWRWH)英文版现在已经出版，Kinle版本可以购买，Amazon上的出版日期显示为：October 12, 2024。估计中文纸质版应该也不会等太久。相对来说，这本书距离上一本 Part II出版的时间，比 Part II 和 Part I 间隔的时间要长了很多。英文版[Segment Routing, Part I](https://www.amazon.com/gp/aw/d/B01I58LSUO?ref_=dbs_p_pwh_awm_cpsb_cl_0&storeType=ebooks)出版于October 6, 2016，[Segment Routing Part II: Traffic Engineering](https://www.amazon.com/gp/aw/d/B07N13RDM9?ref_=dbs_p_pwh_awm_cpsb_cl_1&storeType=ebooks)出版于April 22, 2019，对应的中文版分别由人民邮电出版社出版于2017-10-01 和 2019-09-01，但是现在在京东已经无货了。
 
 从标题也可以看出，这个Part III的关注点就是Segment Routing over IPv6 (SRv6)。SRv6是这几年网络领域比较热门的技术了，国外和国内都有研究。
 
