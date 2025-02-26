@@ -26,3 +26,7 @@ where  OBJECT := { address | addrlabel | amt | fou | help | ila | ioam | l2tp |
                     -rc[vbuf] [size] | -n[etns] name | -N[umeric] | -a[ll] |
                     -c[olor]}
 ```
+
+ip [ OPTIONS ] OBJECT { COMMAND | help }格式的含义是ip后面跟的是OPTIONS选项，然后是操作的OBJECT对象，最后是对象支持的COMMAND命令，可以使用help查看对象支持的命令。
+注意OPTIONS(带有-格式的字符串)必须在OBJECT的前面，比如ip addr -s会提示Command "-s" is unknown，但是ip -s addr就打印正确打印ip地址相关统计信息，因为这里-s被解释为了命令字符串。
+从概念区分上来说，选项对于所有对象是通用的，比如addr对象可以支持-s统计，neigh对象也可以支持，但是二者的统计信息含义是不一样的，而命令是针对具体对象的，每个对象有自己特定的命令。
