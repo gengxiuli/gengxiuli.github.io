@@ -112,10 +112,10 @@ NODE_SPEC := [ TYPE ] PREFIX [ tos TOS ]
 
 ```shell
 
-              to TYPE PREFIX (default)
-                     the destination prefix of the route. If TYPE is omitted, ip assumes type unicast.  Other values of TYPE are listed above.  PREFIX is an IP or IPv6 address
-                     optionally followed by a slash and the prefix length. If the length of the prefix is missing, ip assumes a full-length host route. There is also a special
-                     PREFIX default - which is equivalent to IP 0/0 or to IPv6 ::/0.
+to TYPE PREFIX (default)
+       the destination prefix of the route. If TYPE is omitted, ip assumes type unicast.  Other values of TYPE are listed above.  PREFIX is an IP or IPv6 address
+       optionally followed by a slash and the prefix length. If the length of the prefix is missing, ip assumes a full-length host route. There is also a special
+       PREFIX default - which is equivalent to IP 0/0 or to IPv6 ::/0.
 ```
 
 可以看到PREFIX格式是IP或者IPv6地址 + / + 前缀长度的形式，如果没有前缀长度，会被认为是全长度的主机路由，另外，default是一个特殊的默认路由简写，等于IPv4中的 0/0 或IPv6中的 ::/0。
