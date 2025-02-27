@@ -94,3 +94,65 @@ IOAM6HDR := trace prealloc type IOAM6_TRACE_TYPE ns IOAM6_NAMESPACE size IOAM6_T
 XFRMINFO := if_id IF_ID [ link_dev LINK ]
 ROUTE_GET_FLAGS := [ fibmatch ]
 ```
+
+对于添加路由来说，对应的命令格式为：ip route { **add** | del | change | append | replace } ROUTE
+也就是ip route add ROUTE, 最后的ROUTE的定义格式为：ROUTE := NODE_SPEC [ INFO_SPEC ]
+其中INFO_SPEC根据具体配置是可选项，而NODE_SPEC的格式为：
+
+```shell
+NODE_SPEC := [ TYPE ] PREFIX [ tos TOS ]
+             [ table TABLE_ID ] [ proto RTPROTO ]
+             [ scope SCOPE ] [ metric METRIC ]
+             [ ttl-propagate { enabled | disabled } ]
+```
+
+可以看到其中除了PREFIX是必选项之外，其他都是可选项，那么PREFIX的格式是怎样的，这里就查不到了。
+
+这时我们在shell下执行man ip route查看ip route更详细的帮助手册，其中除了包含上述帮助信息外，还对于PREFIX有如下描述：
+
+```shell
+
+              to TYPE PREFIX (default)
+                     the destination prefix of the route. If TYPE is omitted, ip assumes type unicast.  Other values of TYPE are listed above.  PREFIX is an IP or IPv6 address
+                     optionally followed by a slash and the prefix length. If the length of the prefix is missing, ip assumes a full-length host route. There is also a special
+                     PREFIX default - which is equivalent to IP 0/0 or to IPv6 ::/0.
+```
+
+可以看到PREFIX格式是IP或者IPv6地址 + / + 前缀长度的形式，如果没有前缀长度，会被认为是全长度的主机路由，另外，default是一个特殊的默认路由简写，等于IPv4中的 0/0 或IPv6中的 ::/0。
+看到这里估计你应该可以大致推断出PREFIX的格式了，IPv4或者IPv6的地址格式也就是标准的点分十进制或者IPv6的十六进制表示。
+
+如果看到这里你还有疑问，你还可以继续看到最后，帮助手册还给出了一些配置距离，这里就可以看到真实的用法了。
+
+```shell
+
+EXAMPLES
+       ip ro
+           Show all route entries in the kernel.
+
+       ip route add default via 192.168.1.1 dev eth0
+           Adds a default route (for all addresses) via the local gateway 192.168.1.1 that can be reached on device eth0.
+
+       ip route add 10.1.1.0/30 encap mpls 200/300 via 10.1.1.1 dev eth0
+           Adds an ipv4 route with mpls encapsulation attributes attached to it.
+
+       ip -6 route add 2001:db8:1::/64 encap seg6 mode encap segs 2001:db8:42::1,2001:db8:ffff::2 dev eth0
+           Adds an IPv6 route with SRv6 encapsulation and two segments attached.
+
+       ip -6 route add 2001:db8:1::/64 encap seg6local action End.DT46 vrftable 100 dev vrf100
+           Adds an IPv6 route with SRv6 decapsulation and forward with lookup in VRF table.
+
+       ip -6 route add 2001:db8:1::/64 encap seg6local action End flavors next-csid dev eth0
+           Adds an IPv6 route with SRv6 End behavior with next-csid flavor enabled.
+
+       ip -6 route add 2001:db8:1::/64 encap seg6local action End flavors next-csid lblen 48 nflen 16 dev eth0
+           Adds an IPv6 route with SRv6 End behavior with next-csid flavor enabled and user-provided Locator-Block and Locator-Node Function lengths.
+
+       ip -6 route add 2001:db8:1::/64 encap ioam6 freq 2/5 mode encap tundst 2001:db8:42::1 trace prealloc type 0x800000 ns 1 size 12 dev eth0
+           Adds an IPv6 route with an IOAM Pre-allocated Trace encapsulation (ip6ip6) that only includes the hop limit and the node id, configured for the IOAM namespace 1 and
+           a pre-allocated data block of 12 octets (will be injected in 2 packets every 5 packets).
+
+       ip route add 10.1.1.0/30 nhid 10
+           Adds an ipv4 route using nexthop object with id 10.
+```
+
+至此，你应该可以写出ip route的实际用法了。
