@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "linux iproute2 command"
+title:  "Linux Iproute2 Command"
 date:   2025-02-27
 category: linux
 tags:   iproute2
@@ -154,3 +154,4 @@ EXAMPLES
 ```
 
 至此，你应该可以写出ip route的实际用法了。
+对于 iproute2 支持的其他功能，可以按照上述方法找到所需的命令。
