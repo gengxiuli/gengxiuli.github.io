@@ -95,7 +95,8 @@ XFRMINFO := if_id IF_ID [ link_dev LINK ]
 ROUTE_GET_FLAGS := [ fibmatch ]
 ```
 
-对于添加路由来说，对应的命令格式为：ip route { **add** | del | change | append | replace } ROUTE,也就是ip route add ROUTE, 最后的ROUTE的定义格式为：ROUTE := NODE_SPEC [ INFO_SPEC ],其中INFO_SPEC根据具体配置是可选项，而NODE_SPEC的格式为：
+对于添加路由来说，对应的命令格式为：ip route { **add** | del | change | append | replace } ROUTE,也就是ip route add ROUTE, 
+最后的ROUTE的定义格式为：ROUTE := NODE_SPEC [ INFO_SPEC ],其中INFO_SPEC根据具体配置是可选项，而NODE_SPEC的格式为：
 
 ```shell
 NODE_SPEC := [ TYPE ] PREFIX [ tos TOS ]
