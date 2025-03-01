@@ -6,7 +6,7 @@ category: linux
 tags:   iproute2
 ---
 
-最近在使用linux上的iproute2工具的时候，发现很多基础命令在网上得花费很大的力气找到，比如配置ipv6静态路由的方法。而且因为iproute2包含了大量网络功能配置，导致iproute2的配置命令以及格式有很多，命令行自带的Help信息也不容易理解和掌握，所以自己在这里做一些总结和整理，便于自己查找使用。
+最近在使用 Linux上的iproute2工具的时候，发现很多基础命令在网上得花费很大的力气找到，比如配置 IPv6静态路由的方法。而且因为iproute2包含了大量网络功能配置，导致iproute2的配置命令以及格式有很多，命令行自带的Help信息也不容易理解和掌握，所以自己在这里做一些总结和整理，便于自己查找使用。
 
 下面是在shell下输入ip命令回车显示的打印信息，也是iproute2工具ip主命令的帮助提示：
 ```shell
@@ -120,7 +120,7 @@ to TYPE PREFIX (default)
 可以看到PREFIX格式是IP或者IPv6地址/前缀长度的形式，如果没有前缀长度，会被认为是全长度的主机路由，另外，default是一个特殊的默认路由简写，等于IPv4中的 0/0 或IPv6中的 ::/0。
 看到这里估计你应该可以大致推断出PREFIX的格式了，IPv4或者IPv6的地址格式也就是标准的点分十进制或者IPv6的十六进制表示。
 
-如果看到这里你还有疑问，你还可以继续看到最后，帮助手册还给出了一些配置距离，这里就可以看到真实的用法了。
+如果看到这里你还有疑问，你还可以继续看到最后，帮助手册还给出了一些配置举例，这里就可以看到真实的用法了。
 
 ```shell
 
@@ -161,6 +161,6 @@ EXAMPLES
 
 在Debian 12上试了下，有以下注意事项：
 
-1. man ip address不能写成man ip addr,否则看不到ip address的帮助页信息，而是man ip的帮助信息。这是因为OBJECT中有address和addrlabel都可以匹配man ip addr,但是你直接输入ip addr就是ip address，而不是ip addrlabel。
+1. man ip address不能写成man ip addr,否则看不到ip address的帮助信息，而是man ip的帮助信息。这是因为OBJECT中有address和addrlabel都可以匹配man ip addr,但是你直接输入ip addr就是ip address，而不是ip addrlabel。
 2. man ip neighbour不能写成man ip neigh、man ip neighbor,否则也是man ip的帮助信息。但是同样的，ip neigh,ip neighbor,ip neighbour都是有效的命令，甚至ip ne, ip n都可以匹配到ip neighbour。
 3. 综上所述，在使用ip命令的时候，OBJECT可以简写，甚至只写前几个字母，只要没有歧义，但是man ip 的时候OBJECT必须写全称，否则只打印man ip的帮助信息。
