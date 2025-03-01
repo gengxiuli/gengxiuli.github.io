@@ -155,3 +155,10 @@ EXAMPLES
 
 至此，你应该可以写出ip route的实际用法了。
 对于 iproute2 支持的其他功能，可以按照上述方法找到所需的命令。
+
+2025-03-01更新
+
+在Debian 12上试了下，有以下注意事项
+1) man ip address不能写成man ip addr,否则看不到ip address的帮助页信息，而是man ip的帮助信息。这是因为OBJECT中有address和addrlabel都可以匹配man ip addr,但是你直接输入ip addr就是ip address，而不是ip addrlabel。
+2) man ip neighbour不能写成man ip neigh、man ip neighbor,否则也是man ip的帮助信息。但是同样的，ip neigh,ip neighbor,ip neighbour都是有效的命令，甚至ip ne, ip n都可以匹配到ip neighbour。
+3) 综上所述，在使用ip命令的时候，OBJECT可以简写，甚至只写前几个字母，只要没有歧义，但是man ip 的时候OBJECT必须写全称，否则只打印man ip的帮助信息。
