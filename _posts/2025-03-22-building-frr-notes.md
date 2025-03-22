@@ -60,8 +60,6 @@ tags:   frr Ubuntu configure
 > `--localstatedir` for its actual value to put things in `/var/lib`.  As
 > it is now, being overloaded for `/run`, the configured `/var` path
 > becomes inaccessible.
-> 
-> Signed-off-by: David Lamparter <equinox@opensourcerouting.org>
 
 综上所述，使用 9.2 之前的 configure 配置可以在所有版本上正常编译安装 frr，因为 10.0 之后的编译脚本考虑了兼容性。但是使用最新的 configure 编译指导文档去配置 9.2 之前的 frr 代码，则在安装后运行时，会出现上面提到的 frr 运行时找不到 /etc/frr.conf文件的问题。这其实也是一个兼容性问题，很可能有人用最新的文档去编译 9.2 之前的版本，也会遇到本文提到的这个问题。 因为旧代码改不了了，所以最新的文档最好将这点说明一下。
 
