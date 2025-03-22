@@ -6,24 +6,24 @@ category:  networking
 tags:   frr sonic
 ---
 
-最近在一台 Ubuntu 上编译 frr, 发现编译之后运行总是提示找不到路径 /etc/frr.conf，而改路径确实没有这个文件，frr.conf 的路径是 /etc/frr。
-后来看代码发现当前编译的版本是9.1.3，而之前按照同样的方法编译的是10.0.1。难道和版本有关，经过一番分析和查找，终于发现 frr 官网上[Ubuntu22.04
+最近在一台 Ubuntu 上编译 frr, 发现编译之后运行总是提示找不到文件路径 /etc/frr.conf，而该路径确实没有这个文件，后来发现 frr.conf 安装后的实际路径是 /etc/frr。
+看代码发现当前编译的版本是9.1.3，而之前按照同样的方法编译和运行成功版本的是10.2。难道和版本有关，经过一番分析和查找，终于发现 frr 官网上[Ubuntu22.04
 的构建方法](https://docs.frrouting.org/projects/dev-guide/en/latest/building-frr-for-ubuntu2204.html)是针对最新的版本(写作本文时是10.3)。
-在执行 ./configure 时配置的是：
+其中提到在执行 ./configure 时配置的是：
 
 ```shell
     --sysconfdir=/etc \
     --localstatedir=/var \
 ```
 
-而在9.2版本之前，当然也包括9.1.3，在执行 ./configure 时配置的是
+而在9.2版本之前，当然也包括9.1.3，在执行 ./configure 时配置应该的是
 
 ```shell
     --sysconfdir=/etc/frr \
     --localstatedir=/var/run/frr
 ```
 
-而原因在最新代码的 [configure.ac](https://github.com/FRRouting/frr/blob/master/configure.ac)中已经给出了说明：
+否则会出现运行 frr 时本文开始提到的错误信息。对比上面配置的差异，可以看出 sysconfdir 和 localstatedir 的路径设置发生了变化。原因在最新代码的[configure.ac](https://github.com/FRRouting/frr/blob/master/configure.ac)中已经给出了说明：
 
 > ------------------------------
 > system paths
@@ -43,8 +43,7 @@ tags:   frr sonic
 > /frr suffixes are stripped and a warning is printed.
 
 简单来说就是大概在9.2版本之前的 sysconfdir 和 localstatedir，需要手动在执行 ./configure 时候配置 frr 完整路径，而这种方式和其他包使用的标准方式不同。
-另外为了兼容性的考虑，如果用户按照之前的方式配置 configure， 则脚本中会自动去除末尾的 /frr，保证 sysconfdir 和 localstatedir 只包含定义目录，这通常
-是指路径 /etc 和 /var。
+在修改后配置路径后，为了兼容性的考虑，如果用户按照之前的方式配置 configure， 则脚本中会自动去除末尾的 /frr，保证 sysconfdir 和 localstatedir 只包含指定目录，这通常是指路径 /etc 和 /var。
 
 查看 configure.ac 文件的修改历史，发现这个 [merge](https://github.com/FRRouting/frr/commit/ff62df2e4484b9f89fea4ed736006c21f3a797cc) 是在 2024年1月28日合入的。commit信息如下：
 
@@ -64,5 +63,5 @@ tags:   frr sonic
 > 
 > Signed-off-by: David Lamparter <equinox@opensourcerouting.org>
 
-综上所述，使用 9.2 之前的 configure 配置可以在所有版本上正常编译安装 frr，因为脚本考虑了兼容性。但是使用最新的 configure 编译指导文档去配置 9.2 之前的 frr 代码，则会出现上面提到的 frr 运行时找不到 /etc/frr.conf文件的问题。这其实也时一个兼容性问题，因为旧代码改不了了，所以最新的文档最好将这点说明一下。
+综上所述，使用 9.2 之前的 configure 配置可以在所有版本上正常编译安装 frr，因为 10.0 之后的编译脚本考虑了兼容性。但是使用最新的 configure 编译指导文档去配置 9.2 之前的 frr 代码，则在安装后运行时，会出现上面提到的 frr 运行时找不到 /etc/frr.conf文件的问题。这其实也是一个兼容性问题，因为旧代码改不了了，所以最新的文档最好将这点说明一下。
 
