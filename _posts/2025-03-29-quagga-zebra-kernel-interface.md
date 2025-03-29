@@ -114,6 +114,7 @@ netlink_route_multipath (int cmd, struct prefix *p, struct rib *rib)
   /* Talk to netlink socket. */
   return netlink_talk (&req.n, &zvrf->netlink_cmd, zvrf);
 }
+```
 
 我们再看看netlink_talk的函数实现。
 
@@ -474,6 +475,8 @@ rtm_write (int message,
 根据上述分析，我们大概知道了netlink消息通过nlmsghdr，rtmsg和buf下发路由配置，而socket通过rt_msghdr和buf来下发路由配置。netlink消息之所以分为nlmsghdr和rtmsg两个部分，是因为nlmsghdr是netlink通用信息头，而rtmsg才是路由相关头信息。不论哪种方式，最终的路由配置记录都存放在后面的buf中，通过前面的头信息中的len字段来标识buf的边界。
 
 虽然上面分析的是 Quagga,但是后面fork出的 Frr 和上面的实现也差不多，这里就不展开对比了。需要注意的一点是，不管是 Quagga 还是 Frr,在使用socket类型将路由信息写入内核的时候，都没有通过read/recv读取返回状态信息，而netlink方式会通过recvmsg读取返回信息。
+
+我们再看看两种socket的初始化流程。
 
 netlink套接字的初始化代码：
 
