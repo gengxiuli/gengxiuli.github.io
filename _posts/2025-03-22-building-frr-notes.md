@@ -23,7 +23,7 @@ tags:   frr Ubuntu configure
     --localstatedir=/var/run/frr
 ```
 
-否则就会出现运行 frr 时，本文开始提到的错误信息。对比上面配置的差异，可以看出 sysconfdir 和 localstatedir 的路径设置发生了变化。原因在最新代码的[configure.ac](https://github.com/FRRouting/frr/blob/master/configure.ac)中已经给出了说明：
+否则就会出现运行 frr 时，本文开始提到的错误信息。上面 9.1.3 的编译方法可以参考 github[这里](https://github.com/FRRouting/frr/blob/stable/9.1/doc/developer/include-compile.rst)，其实以前[docs.frrouting.org](https://docs.frrouting.org/projects/dev-guide/en/latest/index.html)还提供不同版本对应的文档说明，但是现在只有最新版本的文档，所以 9.1.x 版本对应的文档只能从对应版本源码里找了。对比上面配置的差异，可以看出 sysconfdir 和 localstatedir 的路径设置发生了变化。原因在最新代码的[configure.ac](https://github.com/FRRouting/frr/blob/master/configure.ac)中已经给出了说明：
 
 > system paths
 > 
