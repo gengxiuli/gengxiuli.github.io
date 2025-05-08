@@ -63,5 +63,40 @@ ip_rcv通过调用ip_rcv_core完成ip头有效性校验，再调用ip_rcv_finish
 *主要函数*
 
 [ip_output](https://elixir.bootlin.com/linux/v5.10.70/source/net/ipv4/ip_output.c#L423)
-在rt_dst_alloc中会将dst.output初始化为ip_output,后面调用dst_output的地方，实际就是进入ip_output中进行处理。而ip_output最终会调用ip_finish_output。
+在rt_dst_alloc中会将dst.output初始化为ip_output,后面调用dst_output的地方，实际就是进入ip_output中进行处理。而ip_output最终会调用ip_finish_output。ip_finish_output的调用路径图如下：
+
+ip_finish_output
+
+-->__ip_finish_output
+
+---->dst_output NAT策略处理之后，需要重新再走一遍output流程。
+
+---->ip_finish_output_gso gso处理流程
+
+------>ip_finish_output2
+
+------>ip_fragment
+
+---->ip_fragment 需要分片处理的报文
+
+------>ip_finish_output2
+
+---->ip_finish_output2
+
+
+可见最后都会进入ip_finish_output2，该函数的调用路径如下：
+
+ip_finish_output2
+
+-->ip_neigh_for_gw [route.h](https://elixir.bootlin.com/linux/v5.10.70/source/include/net/route.h#L379)
+
+---->ip_neigh_gw4
+
+---->ip_neigh_gw6
+
+-->neigh_output [neighbour.h](https://elixir.bootlin.com/linux/v5.10.70/source/include/net/neighbour.h#L502)
+
+---->neigh_hh_output
+
+---->n->output
 
