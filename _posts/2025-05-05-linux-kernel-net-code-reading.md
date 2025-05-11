@@ -55,7 +55,7 @@ tags:   linux kernel networking
 
 [ip_rcv](https://elixir.bootlin.com/linux/v5.10.70/source/net/ipv4/ip_input.c#L530)
 网络协议栈IP层收包入口，具体是在[af_inet.c](https://elixir.bootlin.com/linux/v5.10.70/source/net/ipv4/af_inet.c#L1934)中注册，在[dev.c](https://elixir.bootlin.com/linux/v5.10.70/source/net/core/dev.c#L5344)中被调用。注意在被调用的实现中，使用了 INDIRECT_CALL_INET，而且在参数中可以看到可能被回调的函数ip_rcv或ipv6_rcv,这是一种间接调用方式，可以防止一些潜在攻击。
-ip_rcv通过调用ip_rcv_core完成ip头有效性校验，再调用ip_rcv_finish进入收包处理流程。在ip_rcv_finish中，通过ip_rcv_finish_core完成路由查找，具体说是通过ip_route_input_noref决定是上送本机还是进行转发，分别设置dst.input为ip_local_deliver或者ip_forward。最后，在ip_rcv中通过dst_input调用进入上面dst.input的时间处理流程。
+ip_rcv通过调用ip_rcv_core完成ip头有效性校验，再调用ip_rcv_finish进入收包处理流程。在ip_rcv_finish中，通过ip_rcv_finish_core完成路由查找，具体说是通过ip_route_input_noref决定是上送本机还是进行转发，分别设置dst.input为[ip_local_deliver](https://elixir.bootlin.com/linux/v5.10.70/source/net/ipv4/ip_input.c#L240)或者[ip_forward](https://elixir.bootlin.com/linux/v5.10.70/source/net/ipv4/ip_forward.c#L86)。最后，在ip_rcv中通过dst_input调用进入上面dst.input的时间处理流程。
 
 **文件**
 [ip_output.c](https://elixir.bootlin.com/linux/v5.10.70/source/net/ipv4/ip_output.c)
@@ -100,3 +100,9 @@ ip_finish_output2
 
 ---->n->output
 
+**文件**
+[tcp_ipput.c](https://elixir.bootlin.com/linux/v5.10.70/source/net/ipv4/tcp_ipv4.c)
+
+*主要函数*
+[tcp_v4_rcv](https://elixir.bootlin.com/linux/v5.10.70/source/net/ipv4/tcp_ipv4.c#L1916)
+在[af_inet.c](https://elixir.bootlin.com/linux/v5.10.70/source/net/ipv4/af_inet.c#L1732)中注册的tcp处理函数,根据搜索结果，在[ip_protocol_deliver_rcu](https://elixir.bootlin.com/linux/v5.10.70/source/net/ipv4/ip_input.c#L187)中被调用，其实是通过handler指针调用的，同时通过INDIRECT_CALL_2实现间接调用。
