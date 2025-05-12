@@ -102,9 +102,29 @@ ip_finish_output2
 
 ---->n->output
 
-**文件**
-[tcp_ipput.c](https://elixir.bootlin.com/linux/v5.10.70/source/net/ipv4/tcp_ipv4.c)
+**文件**:
+[tcp_ipv4.c](https://elixir.bootlin.com/linux/v5.10.70/source/net/ipv4/tcp_ipv4.c)
 
-*主要函数*
+*主要函数*:
+
 [tcp_v4_rcv](https://elixir.bootlin.com/linux/v5.10.70/source/net/ipv4/tcp_ipv4.c#L1916)
-在[af_inet.c](https://elixir.bootlin.com/linux/v5.10.70/source/net/ipv4/af_inet.c#L1732)中注册的tcp处理函数,根据搜索结果，在[ip_protocol_deliver_rcu](https://elixir.bootlin.com/linux/v5.10.70/source/net/ipv4/ip_input.c#L187)中被调用，其实是通过handler指针调用的，同时通过INDIRECT_CALL_2实现间接调用。
+在[af_inet.c](https://elixir.bootlin.com/linux/v5.10.70/source/net/ipv4/af_inet.c#L1732)中注册的tcp处理函数,根据搜索结果，在[ip_protocol_deliver_rcu](https://elixir.bootlin.com/linux/v5.10.70/source/net/ipv4/ip_input.c#L187)中被调用，其实是通过handler指针调用的，同时通过INDIRECT_CALL_2实现间接调用。tcp_v4_rcv做完报文有效性检查后，会调用__inet_lookup_skb查找是否有src+dst对应的socket，最后会同步或异步(tcp_add_backlog)调用tcp_v4_do_rcv。
+
+[tcp_v4_do_rcv](https://elixir.bootlin.com/linux/v5.10.70/source/net/ipv4/tcp_ipv4.c#L1655)
+tcp_v4_do_rcv会根据tcp的不同状态进行处理，最终会调用[tcp_rcv_state_process](https://elixir.bootlin.com/linux/v5.10.70/source/net/ipv4/tcp_input.c#L6312)处理报文。
+
+[tcp_v4_early_demux](https://elixir.bootlin.com/linux/v5.10.70/source/net/ipv4/tcp_ipv4.c#L1717)
+在ip_rcv_finish_core中做路由查找之前，当配置了sysctl_ip_early_demux支持通过tcp_v4_early_demux做tcp的早期解复用处理，及tcp的快速处理。
+
+**文件**:
+[tcp_input.c](https://elixir.bootlin.com/linux/v5.10.70/source/net/ipv4/tcp_input.c)
+
+*主要函数*:
+
+[tcp_rcv_state_process](https://elixir.bootlin.com/linux/v5.10.70/source/net/ipv4/tcp_input.c#L6312)
+根据TCP的不同状态处理TCP报文，当非established状态的时候触发tcp状态机，否则使用tcp_data_queue将报文放入队列中，后续由用户态调用的recv/read调用处理。
+
+**文件**:
+[tcp_output.c](https://elixir.bootlin.com/linux/v5.10.70/source/net/ipv4/tcp_output.c)
+
+*主要函数*:
