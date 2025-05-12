@@ -6,7 +6,9 @@ category: networking
 tags:   linux kernel networking
 ---
 
-断断续续也阅读了 Linux kernel 中网络子系统的一部分代码，主要集中在目录 net 下。主要的工具有 https://elixir.bootlin.com/linux, https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/ 和 https://github.com/torvalds/linux。具体这几个工具的比较可以参考[这里](https://thinkdancer.net/2025/04/06/linux-kernel-code-review-online/)。下面是目前主要阅读的一些源文件，并根据自己的阅读经验总结了主要功能，后面可以集中时间专门总结一下网络子系统。
+断断续续也阅读了 Linux kernel 中网络子系统的一部分代码，主要集中在目录 net 下。主要的工具有 https://elixir.bootlin.com/linux, https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/ 和 https://github.com/torvalds/linux。
+
+具体这几个工具的比较可以参考[这里](https://thinkdancer.net/2025/04/06/linux-kernel-code-review-online/)。下面是目前主要阅读的一些源文件，并根据自己的阅读经验总结了主要功能，后面可以集中时间专门总结一下网络子系统。
 
 **文件**：
 [net/core/dev.c](https://elixir.bootlin.com/linux/v5.10.70/source/net/core/dev.c)
