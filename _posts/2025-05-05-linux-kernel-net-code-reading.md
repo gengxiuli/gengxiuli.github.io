@@ -128,3 +128,22 @@ tcp_v4_do_rcv会根据tcp的不同状态进行处理，最终会调用[tcp_rcv_s
 [tcp_output.c](https://elixir.bootlin.com/linux/v5.10.70/source/net/ipv4/tcp_output.c)
 
 *主要函数*:
+
+[tcp_write_xmit](https://elixir.bootlin.com/linux/v5.10.70/source/net/ipv4/tcp_output.c#L2595)
+发送TCP报文的接口，主要提供给__tcp_push_pending_frames和tcp_push_one使用，后两者会在tcp.c中被调用。
+
+[tcp_transmit_skb](https://elixir.bootlin.com/linux/v5.10.70/source/net/ipv4/tcp_output.c#L1419)
+TCP内部及状态机报文发送接口，主要在tcp_output.c内部使用，tcp_write_xmit也是通过这个接口发包的。
+
+**文件**:
+[tcp.c](https://elixir.bootlin.com/linux/v5.10.70/source/net/ipv4/tcp.c)
+
+*主要函数*:
+[tcp_sendmsg](https://elixir.bootlin.com/linux/v5.10.70/source/net/ipv4/tcp.c#L1442)
+用户态send/write/sendmsg/sendto最终调用的发送接口，最终调用tcp_sendmsg_locked。
+
+[tcp_sendmsg_locked(](https://elixir.bootlin.com/linux/v5.10.70/source/net/ipv4/tcp.c#L1189)
+实现tcp报文发送，支持零拷贝方式，支持根据MSS分片处理，通过tcp_write_queue_tail放入sk_write_queue,即tcp的发送队列，当push的时候通过[__tcp_push_pending_frames](https://elixir.bootlin.com/linux/v5.10.70/source/net/ipv4/tcp_output.c#L2856)或者[tcp_push_one](https://elixir.bootlin.com/linux/v5.10.70/source/net/ipv4/tcp_output.c#L2874)完成发包。
+
+[tcp_recvmsg](https://elixir.bootlin.com/linux/v5.10.70/source/net/ipv4/tcp.c#L2019)
+用户态recv/read/readmsg/recvfrom最终调用的接收接口，通过skb_peek_tail从sk_receive_queue获得数据，即tcp的接收队列。
