@@ -139,6 +139,7 @@ TCP内部及状态机报文发送接口，主要在tcp_output.c内部使用，tc
 [tcp.c](https://elixir.bootlin.com/linux/v5.10.70/source/net/ipv4/tcp.c)
 
 *主要函数*:
+
 [tcp_sendmsg](https://elixir.bootlin.com/linux/v5.10.70/source/net/ipv4/tcp.c#L1442)
 用户态send/write/sendmsg/sendto最终调用的发送接口，最终调用tcp_sendmsg_locked。
 
