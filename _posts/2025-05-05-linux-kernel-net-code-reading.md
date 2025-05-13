@@ -102,6 +102,9 @@ ip_finish_output2
 
 ---->n->output
 
+[ip_queue_xmit](https://elixir.bootlin.com/linux/v5.10.70/source/net/ipv4/ip_output.c#L545)
+tcp层发包最终调用的接口，该接口内部再调用__ip_queue_xmit，后者内部先通过ip_route_output_ports查找路由，最后通过ip_local_out发包。ip_local_out内部最终调用dst_output发包。
+
 **文件**:
 [tcp_ipv4.c](https://elixir.bootlin.com/linux/v5.10.70/source/net/ipv4/tcp_ipv4.c)
 
@@ -133,7 +136,7 @@ tcp_v4_do_rcv会根据tcp的不同状态进行处理，最终会调用[tcp_rcv_s
 发送TCP报文的接口，主要提供给__tcp_push_pending_frames和tcp_push_one使用，后两者会在tcp.c中被调用。
 
 [tcp_transmit_skb](https://elixir.bootlin.com/linux/v5.10.70/source/net/ipv4/tcp_output.c#L1419)
-TCP内部及状态机报文发送接口，主要在tcp_output.c内部使用，tcp_write_xmit也是通过这个接口发包的。最终会调用queue_xmit回调完成报文
+TCP内部及状态机报文发送接口，主要在tcp_output.c内部使用，tcp_write_xmit也是通过这个接口发包的。最终会调用queue_xmit回调完成报文的发送，具体的接口ipv4和ipv6分别对应ip_queue_xmit和inet6_csk_xmit。
 
 **文件**:
 [tcp.c](https://elixir.bootlin.com/linux/v5.10.70/source/net/ipv4/tcp.c)
