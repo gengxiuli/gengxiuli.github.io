@@ -106,7 +106,7 @@ ip_finish_output2
 tcp层发包最终调用的接口，该接口内部再调用__ip_queue_xmit，后者内部先通过ip_route_output_ports查找路由，最后通过ip_local_out发包。ip_local_out内部最终调用dst_output发包。
 
 **文件**:
-[tcp_ipv4.c](https://elixir.bootlin.com/linux/v5.10.70/source/net/ipv4/tcp_ipv4.c)
+[net/ipv4/tcp_ipv4.c](https://elixir.bootlin.com/linux/v5.10.70/source/net/ipv4/tcp_ipv4.c)
 
 *主要函数*:
 
@@ -120,7 +120,7 @@ tcp_v4_do_rcv会根据tcp的不同状态进行处理，最终会调用[tcp_rcv_s
 在ip_rcv_finish_core中做路由查找之前，当配置了sysctl_ip_early_demux支持通过tcp_v4_early_demux做tcp的早期解复用处理，及tcp的快速处理。
 
 **文件**:
-[tcp_input.c](https://elixir.bootlin.com/linux/v5.10.70/source/net/ipv4/tcp_input.c)
+[net/ipv4/tcp_input.c](https://elixir.bootlin.com/linux/v5.10.70/source/net/ipv4/tcp_input.c)
 
 *主要函数*:
 
@@ -128,7 +128,7 @@ tcp_v4_do_rcv会根据tcp的不同状态进行处理，最终会调用[tcp_rcv_s
 根据TCP的不同状态处理TCP报文，当非established状态的时候触发tcp状态机，否则使用tcp_data_queue将报文放入队列中，后续由用户态调用的recv/read调用处理。
 
 **文件**:
-[tcp_output.c](https://elixir.bootlin.com/linux/v5.10.70/source/net/ipv4/tcp_output.c)
+[net/ipv4/tcp_output.c](https://elixir.bootlin.com/linux/v5.10.70/source/net/ipv4/tcp_output.c)
 
 *主要函数*:
 
@@ -139,7 +139,7 @@ tcp_v4_do_rcv会根据tcp的不同状态进行处理，最终会调用[tcp_rcv_s
 TCP内部及状态机报文发送接口，主要在tcp_output.c内部使用，tcp_write_xmit也是通过这个接口发包的。最终会调用queue_xmit回调完成报文的发送，具体的接口ipv4和ipv6分别对应ip_queue_xmit和inet6_csk_xmit。
 
 **文件**:
-[tcp.c](https://elixir.bootlin.com/linux/v5.10.70/source/net/ipv4/tcp.c)
+[net/ipv4/tcp.c](https://elixir.bootlin.com/linux/v5.10.70/source/net/ipv4/tcp.c)
 
 *主要函数*:
 
