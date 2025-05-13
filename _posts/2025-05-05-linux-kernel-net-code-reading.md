@@ -147,7 +147,7 @@ TCP内部及状态机报文发送接口，主要在tcp_output.c内部使用，tc
 用户态send/write/sendmsg/sendto最终调用的发送接口，最终调用tcp_sendmsg_locked。
 
 [tcp_sendmsg_locked(](https://elixir.bootlin.com/linux/v5.10.70/source/net/ipv4/tcp.c#L1189)
-实现tcp报文发送，支持零拷贝方式，支持根据MSS分片处理，通过tcp_write_queue_tail放入sk_write_queue,即tcp的发送队列，当push的时候通过[__tcp_push_pending_frames](https://elixir.bootlin.com/linux/v5.10.70/source/net/ipv4/tcp_output.c#L2856)或者[tcp_push_one](https://elixir.bootlin.com/linux/v5.10.70/source/net/ipv4/tcp_output.c#L2874)完成发包。
+实现tcp报文发送，支持零拷贝方式，支持根据MSS分片处理，通过tcp_write_queue_tail读取sk_write_queue,即tcp的发送队列，当push的时候通过[__tcp_push_pending_frames](https://elixir.bootlin.com/linux/v5.10.70/source/net/ipv4/tcp_output.c#L2856)或者[tcp_push_one](https://elixir.bootlin.com/linux/v5.10.70/source/net/ipv4/tcp_output.c#L2874)完成发包。通过skb_entail将skb放入sk_write_queue，以便实现异步发包。
 
 [tcp_recvmsg](https://elixir.bootlin.com/linux/v5.10.70/source/net/ipv4/tcp.c#L2019)
-用户态recv/read/readmsg/recvfrom最终调用的接收接口，通过skb_peek_tail从sk_receive_queue获得数据，即tcp的接收队列。
+用户态recv/read/recvmsg/recvfrom最终调用的接收接口，通过skb_peek_tail从sk_receive_queue获得数据，即tcp的接收队列。
