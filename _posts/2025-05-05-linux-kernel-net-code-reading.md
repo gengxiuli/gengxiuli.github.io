@@ -151,3 +151,5 @@ TCP内部及状态机报文发送接口，主要在tcp_output.c内部使用，tc
 
 [tcp_recvmsg](https://elixir.bootlin.com/linux/v5.10.70/source/net/ipv4/tcp.c#L2019)
 用户态recv/read/recvmsg/recvfrom最终调用的接收接口，通过skb_peek_tail从sk_receive_queue获得数据，即tcp的接收队列。
+
+未完待续。
