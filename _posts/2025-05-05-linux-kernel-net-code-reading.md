@@ -65,7 +65,7 @@ ip_rcv通过调用ip_rcv_core完成ip头有效性校验，再调用ip_rcv_finish
 *主要函数*：
 
 [ip_output](https://elixir.bootlin.com/linux/v5.10.70/source/net/ipv4/ip_output.c#L423)
-在rt_dst_alloc中会将dst.output初始化为ip_output,后面调用dst_output的地方，实际就是进入ip_output中进行处理。而ip_output最终会调用ip_finish_output。ip_finish_output的调用路径图如下：
+在rt_dst_alloc中会将dst.output初始化为ip_output, 后面调用dst_output的地方，实际就是进入ip_output中进行处理。而ip_output最终会调用[ip_finish_output](https://elixir.bootlin.com/linux/v5.10.70/source/net/ipv4/ip_output.c#L311)。ip_finish_output的调用路径图如下：
 
 ip_finish_output
 
@@ -86,7 +86,7 @@ ip_finish_output
 ---->ip_finish_output2
 
 
-可见最后都会进入ip_finish_output2，该函数的调用路径如下：
+可见最后都会进入[ip_finish_output2](https://elixir.bootlin.com/linux/v5.10.70/source/net/ipv4/ip_output.c#L187)，该函数的调用路径如下：
 
 ip_finish_output2
 
@@ -195,7 +195,7 @@ TCP内部及状态机报文发送接口，主要在tcp_output.c内部使用，tc
 更新neighbour状态，由arp或者ipv6 nd根据接收到的报文调用。
 
 [neigh_xmit](https://elixir.bootlin.com/linux/v5.10.70/source/net/core/neighbour.c#L2994)
-查找对应地址的neigh表项，如果不存在则创建，然后通过neigh子系统中的output回调进行探测或者发包。
+查找对应地址的neigh表项，如果不存在则创建，然后通过neigh子系统中的output回调进行探测或者发包。可以看出，这是没有 cache 支持的neigh发送流程，什么模块会使用呢: mpls。mpls没有类似于ip转发的hh缓存,所以在[mpls_xmit](https://elixir.bootlin.com/linux/v5.10.70/source/net/mpls/mpls_iptunnel.c#L36)和[mpls_forward](https://elixir.bootlin.com/linux/v5.10.70/source/net/mpls/af_mpls.c#L341)中都是通过neigh_xmit发送报文的。
 
 [neigh_suspect](https://elixir.bootlin.com/linux/v5.10.70/source/net/core/neighbour.c#L873)
 neigh状态可疑的时候，关闭快速发送通道。
@@ -204,8 +204,10 @@ neigh状态可疑的时候，关闭快速发送通道。
 neigh状态正常的时候，打开快速发送通道。
 
 [neigh_resolve_output](https://elixir.bootlin.com/linux/v5.10.70/source/net/core/neighbour.c#L1477)
-解析neigh状态后发送，通过neigh_event_send->__neigh_event_send触发定时器或者立即发送arp请求，如果存在hh缓存则使用缓存，否则根据neigh填充二层头。
-最后通过dev_queue_xmit发包。
+解析neigh状态后发送，通过neigh_event_send->__neigh_event_send触发定时器或者立即发送arp请求，如果dev的header_ops中cache有效，这里对于eth设备对应的是[eth_header_cache](https://elixir.bootlin.com/linux/v5.10.70/source/net/ethernet/eth.c#L233)，同时hh.hh_len为0表示没有缓存，则调用 neigh_hh_init 更新hh缓存，然后根据neigh填充二层头。最后通过dev_queue_xmit发包。
+
+[neigh_hh_init](https://elixir.bootlin.com/linux/v5.10.70/source/net/core/neighbour.c#L1458)
+调用 neigh 对应的 dev 中的 header_ops->cache更新 hh 缓存，cache 对于 eth 对应的是 [eth_header_cache](https://elixir.bootlin.com/linux/v5.10.70/source/net/ethernet/eth.c#L233), 在 [ether_setup](https://elixir.bootlin.com/linux/v5.10.70/source/net/ethernet/eth.c#L361)中通过[eth_header_ops](https://elixir.bootlin.com/linux/v5.10.70/source/net/ethernet/eth.c#L347)注册的。
 
 [neigh_connected_output](https://elixir.bootlin.com/linux/v5.10.70/source/net/core/neighbour.c#L1512)
 当前已完成neigh探测后，当没有支持hh cache的时候进行发包。对于eth设备来说，因为支持hh，所有不走这里。这是一种通用接口，一些没有支持邻居缓存的设备使用这种方法完成状态解析后的发包。从 neigh_connected_output 和 neigh_resolve_output 的代码可以看出，前者相对于后者少了缓存的流程。
@@ -225,3 +227,30 @@ neigh邻居表初始化，arp和ipv6 nd调用初始化arp表和ip nd表。
 [neightbl_dump_info](https://elixir.bootlin.com/linux/v5.10.70/source/net/core/neighbour.c#L2374)
 [neightbl_set](https://elixir.bootlin.com/linux/v5.10.70/source/net/core/neighbour.c#L2188)
 上面5个函数是向rtnetlink注册的回调函数，分别实现neigh的添加，删除，获取, 导出和配置操作。
+
+**文件**:
+[net/core/neighbour.h](https://elixir.bootlin.com/linux/v5.10.70/source/include/net/neighbour.h)
+
+*主要函数*:
+
+[neigh_output](https://elixir.bootlin.com/linux/v5.10.70/source/include/net/neighbour.h#L502)
+邻居子系统提供的发送接口，以 inline 的形式定义在 neighbour.h 中。
+
+```c
+static inline int neigh_output(struct neighbour *n, struct sk_buff *skb,
+			       bool skip_cache)
+{
+	const struct hh_cache *hh = &n->hh;
+
+	if ((n->nud_state & NUD_CONNECTED) && hh->hh_len && !skip_cache)
+		return neigh_hh_output(hh, skb);
+	else
+		return n->output(n, skb);
+}
+```
+
+当 neigh 的状态为 NUD_CONNECTED，且 h h缓存长度非0， 且未设置 skip_cache，则使用 neigh_hh_output 进行缓存发送，否则使用neigh注册的output回调，其实就是neigh_resolve_output。 neigh_output被[ipv4](https://elixir.bootlin.com/linux/v5.10.70/source/net/ipv4/ip_output.c#L230)和[ipv6](https://elixir.bootlin.com/linux/v5.10.70/source/net/ipv6/ip6_output.c#L145)调用, 注意这没有mpls, 因此目前mpls没有neigh缓存机制发包。其实bridge在[br_nf_pre_routing_finish_bridge](https://elixir.bootlin.com/linux/v5.10.70/source/net/bridge/br_netfilter_hooks.c#L281)中还通过neigh子系统提供的[neigh_hh_bridge](https://elixir.bootlin.com/linux/v5.10.70/source/include/net/neighbour.h#L449)接口实现了通过缓存机制发包。
+
+[neigh_hh_output](https://elixir.bootlin.com/linux/v5.10.70/source/include/net/neighbour.h#L462)
+neigh 子系统提供的缓存发送接口，复制 hh 缓存中的数据到 skb 中，然后使用 dev_queue_xmit 发包。neigh_hh_output目前只被neigh_output调用。
+缓存数据是何时初始化的呢？neigh_resolve_output中。
