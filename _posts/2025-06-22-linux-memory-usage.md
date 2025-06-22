@@ -38,7 +38,7 @@ Unevictable:           0 kB
 Mlocked:               0 kB
 ```
 注意，上述 available/MemAvailable并不是通过 free + buff/cache 简单计算得到的，而是在内核中通过比较复杂的算法得到的。
-其最开始合入内核的commit可以参考这里：[/proc/meminfo: provide estimated available memory](https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=34e431b0ae398fc54ea69ff85ec700722c9da773)。合入的commit信息如下：
+其最开始合入内核的commit可以参考这里：[/proc/meminfo: provide estimated available memory](https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=34e431b0ae398fc54ea69ff85ec700722c9da773)，合入主线的时间是2014年1月21日，对应的内核版本是[3.14](https://kernelnewbies.org/Linux_3.14)。其合入的commit信息如下：
 
 ```
 Many load balancing and workload placing programs check /proc/meminfo to
@@ -63,5 +63,6 @@ amount of free memory.
 It is more convenient to provide such an estimate in /proc/meminfo.  If
 things change in the future, we only have to change it in one place.
 ```
+最新版本的内核(6.13),上述avaiable的计算已经放到[show_mem.c](https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/mm/show_mem.c)中了。
 
 这篇文章[我的内存呢？Linux MemAvailable 如何计算](https://lotabout.me/2021/Linux-Available-Memory/)介绍了MemAvailable的计算方法，有兴趣可以自己尝试计算一下。文中还提到另外一个问题，我们如何计算每个进程(或者进程中每个线程)的内存使用情况呢？如果一个进程包含了很多线程，可以通过 top 命令中的 thread 视图查看(大写的H)，但是如何通过程序计算出来，可能需要我们代码去实现了。另外，将一个比较大的程序拆分为多个进程，其实天生就支持了多进程内存查看，比多线程要更加直观一些,这也算是多进程的一个优点了吧。
