@@ -9,7 +9,7 @@ tags:   linux memory
 因为需要计算 Linux 下的内存使用率，搜索了一下发现目前主要的计算方法是：
 
 ```c
-Usage = (MemTotal - Available) / MemTotal × 100%
+Usage = (MemTotal - Available) / MemTotal * 100%
 ```
 其中 MemTotal 和 Available 通过 free 或者 cat /proc/meminfo 可以获取到。
 
@@ -18,7 +18,6 @@ free 的输出：
                total        used        free      shared  buff/cache   available
 Mem:         7778640      813616     6749036        3192      452044     6965024
 Swap:        2097152           0     2097152
-thinkdancer@Workpad:~$
 ```
 cat /proc/meminfo 的输出(部分)
 ```shell
