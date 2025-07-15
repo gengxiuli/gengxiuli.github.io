@@ -120,9 +120,9 @@ comments:
   giscus:
     #repo: # <gh-username>/<repo>
     repo: gengxiuli/gengxiuli.github.io
-    repo_id:
-    category:
-    category_id:
+    repo_id: R_kgDOMnKdBw
+    category: Announcements
+    category_id: DIC_kwDOMnKdB84CtAK0
     mapping: # optional, default to 'pathname'
     strict: # optional, default to '0'
     input_position: # optional, default to 'bottom'
