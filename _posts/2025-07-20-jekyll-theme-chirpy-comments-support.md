@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "jekyll theme chirpy comments support"
+title:  "Jekyll theme chirpy comments support"
 date:   2025-07-20
 category:  blog
 tags:   jekyll chirpy comments
