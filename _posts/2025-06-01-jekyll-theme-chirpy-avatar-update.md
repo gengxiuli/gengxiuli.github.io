@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "jekyll theme chirpy avatar update"
+title:  "Jekyll theme chirpy avatar update"
 date:   2025-06-01
 category:  blog
 tags:   jekyll chirpy avatar
