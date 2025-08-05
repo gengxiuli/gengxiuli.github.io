@@ -3,7 +3,7 @@ layout: post
 title:  "WSL linux kernel ko build"
 date:   2025-08-03
 category: linux
-tags:   kernel ko
+tags:   kernel wsl ko
 ---
 
 在linux下编译ko模块，以便在内核中增加自定义的驱动或者协议，是内核开发中很重要的一部分。WSL目前在Windows上基本可以代替各种虚拟机方案了，使用起来简单而又强大。
