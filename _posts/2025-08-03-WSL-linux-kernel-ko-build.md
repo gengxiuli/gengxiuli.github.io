@@ -41,3 +41,10 @@ kernel=C:\\Users\\abc\\bzImage
 ```
 
 完成后在Windows命令行下执行wsl --shutdown关闭WSL，然后再次开启，成功进入系统后用uname -a查看版本是否更新成功。
+
+参考资料：
+1. https://zhuanlan.zhihu.com/p/268363827
+2. https://blog.mahyang.uk/2023/09/16/%E5%A6%82%E4%BD%95%E5%9C%A8-WSL-%E4%B8%AD%E7%BC%96%E8%AF%91%E5%8A%A0%E8%BD%BD%E5%86%85%E6%A0%B8%E6%A8%A1%E5%9D%97/
+3. https://dion6850.github.io/posts/59779/
+4. https://maxlhy0424.github.io/post/3.html
+5. https://whythz.github.io/posts/%E5%85%B3%E4%BA%8EWSL2%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E8%B8%A9%E5%9D%91/
