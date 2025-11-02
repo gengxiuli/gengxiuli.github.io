@@ -20,7 +20,7 @@ QQ号码回收规则
 <https://kf.qq.com/faq/2509173UnYn6250917nAn6zq.html>
 
 微信公众号3.5浪费账号资源行为
-<https://mp.weixin.qq.com/mp/opshowpage?action=newoplaw#t3-3-1>
+<https://mp.weixin.qq.com/mp/opshowpage?action=newoplaw#t3-3-5>
 
 微信公众号/服务号被系统冻结问题汇总
 <https://kf.qq.com/faq/180306JVvii2180306RvmEzy.html>
