@@ -25,6 +25,9 @@ Microsoft’s open approach to networking
 How Microsoft builds its fast and reliable global network
 <https://azure.microsoft.com/en-us/blog/how-microsoft-builds-its-fast-and-reliable-global-network/>
 
+Azure.Source – Volume 24
+<https://azure.microsoft.com/en-us/blog/azure-source-2018-03-26/>
+
 Azure.Source – Volume 61
 <https://azure.microsoft.com/en-us/blog/azure-source-volume-61/>
 
@@ -51,3 +54,20 @@ Microsoft Azure and Microsoft Research take giant step towards eliminating netwo
 Large-Scale Silicon Photonic Switches
 <https://www.microsoft.com/en-us/research/wp-content/uploads/2016/07/Wu_Ming_Si_photonic_switch_r01.pdf>
 
+基于SONiC开源云网络操作系统的安全机制研发实习生
+<https://www.microsoft.com/en-us/research/opportunity/基于SONiC开源云网络操作系统的安全机制研发实习生/>
+
+Keynote: The Art of Building a Reliable Cloud Network
+<https://www.microsoft.com/en-us/research/video/the-art-of-building-a-reliable-cloud-network/>
+
+Whoa. Microsoft Is Using Linux to Run Its Cloud
+<https://www.wired.com/2015/09/microsoft-using-linux-run-cloud/>
+
+Azure Cloud Switch: Microsoft's Own Linux Platform
+<https://www.phoronix.com/news/Microsoft-Linux-ACS>
+
+Microsoft showcases the Azure Cloud Switch (ACS)
+<https://azure.microsoft.com/en-us/blog/microsoft-showcases-the-azure-cloud-switch-acs/>
+
+Azure Cloud Switch - Commodity switch software stack for data center networks
+<https://conferences.sigcomm.org/sigcomm/2015/industrialdemosessions.php>
