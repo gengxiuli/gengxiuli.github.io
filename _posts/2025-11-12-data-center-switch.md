@@ -2,7 +2,7 @@
 layout: post
 title:  "Data center switch"
 date:   2025-11-12
-category: blog
+category: networking
 tags:   dc switch
 ---
 

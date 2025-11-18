@@ -2,7 +2,7 @@
 layout: post
 title:  "TCP and udp options"
 date:   2025-11-04
-category: blog
+category: networking
 tags:   tcp udp
 ---
 

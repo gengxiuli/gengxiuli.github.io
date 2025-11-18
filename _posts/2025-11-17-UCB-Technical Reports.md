@@ -2,7 +2,7 @@
 layout: post
 title:  "UCB Technical Reports"
 date:   2025-11-17
-category: blog
+category: networking
 tags:   UCB
 ---
 

@@ -2,7 +2,7 @@
 layout: post
 title:  "Microsoft SONiC information"
 date:   2025-11-17
-category: blog
+category: networking
 tags:   microsoft sonic
 ---
 
