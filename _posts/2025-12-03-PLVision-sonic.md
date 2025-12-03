@@ -1,9 +1,9 @@
 ---
 layout: post
 title:  "PLVision SONiC"
-date:   2025-11-17
+date:   2025-12-03
 category: networking
-tags:   plvision sonic
+tags:   plvision sonic srv6
 ---
 
 Join PLVision at SONiC Mini Summit within Open Source Summit Europe 2025
