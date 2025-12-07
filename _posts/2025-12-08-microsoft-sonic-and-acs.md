@@ -35,3 +35,6 @@ DENT Launches To Simplify Enterprise Edge Networking Software
 FRR: The Most Popular Network Router You’ve Never Heard Of
 <https://www.nextplatform.com/2020/10/26/frr-the-most-popular-network-router-youve-never-heard-of/>
 
+从ServerSwitch到SONiC Chassis：数据中心交换机技术的十年探索历程
+<https://www.sdnlab.com/23377.html>
+
