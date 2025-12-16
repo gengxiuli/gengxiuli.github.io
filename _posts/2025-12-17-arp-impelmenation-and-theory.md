@@ -36,6 +36,9 @@ SONiC中ARP测试用例简析
 ARP实例分析
 <https://www.zhaocs.info/arp_analyse.html>
 
+链路层地址（ARP/Neighbor）相关信息
+<https://blog.clanzx.net/network/ip-neigh.html>
+
 arpd - userspace arp daemon.
 <https://manpages.debian.org/stretch/iproute2/arpd.8.en.html>
 
@@ -48,5 +51,16 @@ arpd.c
 arping.c
 <https://github.com/iputils/iputils/blob/master/arping.c>
 
-链路层地址（ARP/Neighbor）相关信息
-<https://blog.clanzx.net/network/ip-neigh.html>
+arp.c
+<https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/net/ipv4/arp.c>
+
+arp(7) — Linux manual page
+<https://www.man7.org/linux/man-pages/man7/arp.7.html>
+
+ARP Internals: an in-depth exploration of how ARP functions
+<https://blogs.oracle.com/linux/arp-internals>
+
+IP Sysctl
+<https://www.kernel.org/doc/html/latest/networking/ip-sysctl.html>
+
+
