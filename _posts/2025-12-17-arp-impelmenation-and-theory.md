@@ -63,4 +63,7 @@ ARP Internals: an in-depth exploration of how ARP functions
 IP Sysctl
 <https://www.kernel.org/doc/html/latest/networking/ip-sysctl.html>
 
+Requirements for Internet Hosts -- Communication Layers
+<https://www.rfc-editor.org/rfc/rfc1122>
+
 
