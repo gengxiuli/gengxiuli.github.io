@@ -158,7 +158,7 @@ TCP内部及状态机报文发送接口，主要在tcp_output.c内部使用，tc
 *主要函数*:
 
 [arp_send](https://elixir.bootlin.com/linux/v5.10.70/source/net/ipv4/arp.c#L322)
-向指定目的IP发送arp，type决定的发送报文的类型，支持请求和响应报文。具体通过arp_create创建skb,通过arp_xmit发包。有些模块在发包之前有自己的处理流程，比如bound模块，参考[这里(]https://elixir.bootlin.com/linux/v5.10.70/source/drivers/net/bonding/bond_main.c#L2704)，或者vxlan模块，参考[这里](https://elixir.bootlin.com/linux/v5.10.70/source/drivers/net/bonding/bond_main.c#L2704)。所以将组包和发包进行了拆分。
+向指定目的IP发送arp，type决定的发送报文的类型，支持请求和响应报文。具体通过arp_create创建skb,通过arp_xmit发包。有些模块在发包之前有自己的处理流程，比如bound模块，参考[这里](https://elixir.bootlin.com/linux/v5.10.70/source/drivers/net/bonding/bond_main.c#L2704)，或者vxlan模块，参考[这里](https://elixir.bootlin.com/linux/v5.10.70/source/drivers/net/bonding/bond_main.c#L2704)。所以将组包和发包进行了拆分。
 
 [arp_create](https://elixir.bootlin.com/linux/v5.10.70/source/net/ipv4/arp.c#L523)
 创建arp报文，根据输入的参数填充skb中的相关字段结构。
