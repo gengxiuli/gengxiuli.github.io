@@ -21,3 +21,17 @@ By default, most of the kernel is build with C's -O2 (some code, like Random Num
 > make KCFLAGS="-O3"
 
 > There was a official attempt to add -O3 to the kernel but Linus Torvalds reject it due to -O3 historically outputting worse code than -O2. Phoronix ran a -O3 kernel benchmark and found nearly all tested programs to have no measurable benefit.
+
+上面提到：By default, most of the kernel is build with C's -O2,参考的是<https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Makefile#n892>，注意写作本文时Linux内核主线版本是7.0-rc2，所以更新了一下这里Makefile对应的行号。具体Malefile内容如下。
+
+```
+ifdef CONFIG_CC_OPTIMIZE_FOR_PERFORMANCE
+KBUILD_CFLAGS += -O2
+KBUILD_RUSTFLAGS += -Copt-level=2
+else ifdef CONFIG_CC_OPTIMIZE_FOR_SIZE
+KBUILD_CFLAGS += -Os
+KBUILD_RUSTFLAGS += -Copt-level=s
+endif
+```
+
+可以看出，如果定义了宏CONFIG_CC_OPTIMIZE_FOR_PERFORMANCE则使用O2优化编译，如果定义了CONFIG_CC_OPTIMIZE_FOR_SIZE则使用Os优化编译，那么如何看出默认是哪钟编译呢？
