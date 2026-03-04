@@ -60,6 +60,6 @@ config CC_OPTIMIZE_FOR_SIZE
 endchoice
 ```
 
-可以看出默认的选项就是CC_OPTIMIZE_FOR_PERFORMANCE。
+可以看出默认的选项就是CC_OPTIMIZE_FOR_PERFORMANCE。这个patch
 
 这里有篇文章[使用-O0编译Linux内核](https://www.cnblogs.com/pengdonglin137/articles/13287108.html)，专门讲解了如何配置Linux kernel使用-O0级别编译，因为内核本身没有提供原生支持，所以需要自己手动修改。
