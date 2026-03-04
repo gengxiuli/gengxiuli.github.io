@@ -62,4 +62,6 @@ endchoice
 
 可以看出默认的选项就是CC_OPTIMIZE_FOR_PERFORMANCE。这个patch[kconfig: Warn if choice default is not in choice](https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=2c37e08464a8500b69a6c0be18d159bd1a312620)还增加了对优化级别的检查。
 
-这里有篇文章[使用-O0编译Linux内核](https://www.cnblogs.com/pengdonglin137/articles/13287108.html)，专门讲解了如何配置Linux kernel使用-O0级别编译，因为内核本身没有提供原生支持，所以需要自己手动修改。
+这里有篇文章[使用-O0编译Linux内核](https://www.cnblogs.com/pengdonglin137/articles/13287108.html)，专门讲解了如何配置Linux kernel使用-O0级别编译，因为内核本身没有提供原生支持，所以需要自己手动修改。对于-O1编译，也是一样的修改。
+
+其实，曾经有更激进的建议提出把默认级别修改为-O3，但是被linus拒绝了，理由是-O3在很长一段历史中生成的代码会更糟糕，而且没有充分的证据证明-O3有更好的效果，具体可以参考<https://lore.kernel.org/lkml/20220621133526.29662-1-mikoxyzzz@gmail.com/>，<https://lore.kernel.org/lkml/20191211104619.114557-1-oleksandr@redhat.com/>，<https://lore.kernel.org/lkml/CA+55aFz2sNBbZyg-_i8_Ldr2e8o9dfvdSfHHuRzVtP2VMAUWPg@mail.gmail.com/>。
