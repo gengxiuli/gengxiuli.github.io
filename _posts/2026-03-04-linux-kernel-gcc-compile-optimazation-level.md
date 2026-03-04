@@ -67,3 +67,20 @@ endchoice
 到此为止，我们也可以明白，为什么内核中有很多READ_ONCE,WRITE_ONCE这种设置内存屏障的读写接口了，为的就是在gcc优化开启的条件下代码依然可以正确运行。而对于我们很多应用层软件开发，即使代码没有这种内存屏障考虑，如果没有开启代码优化，也不会出什么问题。但是如果一旦开启，就需要对这种细节格外注意，否则出现莫名其妙的问题，还怪罪是gcc优化引入的，而不知道是自己的代码没有考虑gcc的优化编译。
 
 其实，曾经有更激进的建议提出把默认级别修改为-O3，但是被linus拒绝了，理由是-O3在很长一段历史中生成的代码会更糟糕，而且没有充分的证据证明-O3有更好的效果，具体可以参考<https://lore.kernel.org/lkml/20220621133526.29662-1-mikoxyzzz@gmail.com/>，<https://lore.kernel.org/lkml/20191211104619.114557-1-oleksandr@redhat.com/>，<https://lore.kernel.org/lkml/CA+55aFz2sNBbZyg-_i8_Ldr2e8o9dfvdSfHHuRzVtP2VMAUWPg@mail.gmail.com/>。
+
+这个patch[kbuild: drop support for CONFIG_CC_OPTIMIZE_FOR_PERFORMANCE_O3](https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/commit/Makefile?h=linux-6.19.y&id=a6036a41bffba3d5007e377483b425d470ad8042)中给出了如何使用-O3 编译内核的方法，同时说明了增加-O3 编译选项需要提供的依据。
+
+```
+Folks looking to experiment with `-O3` (or any compiler flag for that
+matter) may pass them along to the command line invocation of make:
+
+$ make KCFLAGS=-O3
+
+Code that looks to re-add an explicit Kconfig option for `-O3` should
+provide:
+1. A rigorous and reproducible performance profile of a reasonable
+   userspace workload that demonstrates a hot loop in the kernel that
+   would benefit from `-O3` over `-O2`.
+2. Disassembly of said loop body before and after.
+3. Provides stats on terms of increase in file size.
+```
