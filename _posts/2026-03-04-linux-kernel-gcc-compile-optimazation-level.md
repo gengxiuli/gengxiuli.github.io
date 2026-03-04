@@ -64,4 +64,6 @@ endchoice
 
 这里有篇文章[使用-O0编译Linux内核](https://www.cnblogs.com/pengdonglin137/articles/13287108.html)，专门讲解了如何配置Linux kernel使用-O0级别编译，因为内核本身没有提供原生支持，所以需要自己手动修改。对于-O1编译，也是一样的修改。
 
+到此为止，我们也可以明白，为什么内核中有很多READ_ONCE,WRITE_ONCE这种设置内存屏障的读写接口了，为的就是在gcc优化开启的条件下代码依然可以正确运行。而对于我们很多应用层软件开发，即使代码没有这种内存屏障考虑，如果没有开启代码优化，也不会出什么问题。但是如果一旦开启，就需要对这种细节格外注意，否则出现莫名其妙的问题，还怪罪是gcc优化引入的，而不知道是自己的代码没有考虑gcc的优化编译。
+
 其实，曾经有更激进的建议提出把默认级别修改为-O3，但是被linus拒绝了，理由是-O3在很长一段历史中生成的代码会更糟糕，而且没有充分的证据证明-O3有更好的效果，具体可以参考<https://lore.kernel.org/lkml/20220621133526.29662-1-mikoxyzzz@gmail.com/>，<https://lore.kernel.org/lkml/20191211104619.114557-1-oleksandr@redhat.com/>，<https://lore.kernel.org/lkml/CA+55aFz2sNBbZyg-_i8_Ldr2e8o9dfvdSfHHuRzVtP2VMAUWPg@mail.gmail.com/>。
