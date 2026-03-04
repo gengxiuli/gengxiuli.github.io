@@ -35,3 +35,29 @@ endif
 ```
 
 可以看出，如果定义了宏CONFIG_CC_OPTIMIZE_FOR_PERFORMANCE则使用O2优化编译，如果定义了CONFIG_CC_OPTIMIZE_FOR_SIZE则使用Os优化编译，那么如何看出默认是哪钟编译呢？
+
+在文件<https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/init/Kconfig>中，我们可以看到下面的内容：
+
+```
+
+choice
+	prompt "Compiler optimization level"
+	default CC_OPTIMIZE_FOR_PERFORMANCE
+
+config CC_OPTIMIZE_FOR_PERFORMANCE
+	bool "Optimize for performance (-O2)"
+	help
+	  This is the default optimization level for the kernel, building
+	  with the "-O2" compiler flag for best performance and most
+	  helpful compile-time warnings.
+
+config CC_OPTIMIZE_FOR_SIZE
+	bool "Optimize for size (-Os)"
+	help
+	  Choosing this option will pass "-Os" to your compiler resulting
+	  in a smaller kernel.
+
+endchoice
+```
+
+可以看出默认的选项就是CC_OPTIMIZE_FOR_PERFORMANCE。
