@@ -1,0 +1,86 @@
+---
+layout: post
+title:  "Linux kernel gcc compile optimization level"
+date:   2026-03-04
+category: linux
+tags:   gcc
+---
+
+wiki.gentoo.org 上的这篇文章[Kernel/Optimization](https://wiki.gentoo.org/wiki/Kernel/Optimization)介绍了很多关于 Linux 内核编译优化的事情。其中有如下一段。
+
+> *FLAGS
+
+> Note
+
+> For more list of *FLAGS to play with, see the GCC manual and Clang manual or man 1 gcc and man 1 clang commands.
+By default, most of the kernel is build with C's -O2 (some code, like Random Number Generation, does not work with optimizations and sometimes checked with the C macro __OPTIMIZE__). This can be changed via Kbuild. Before making any KCFLAGS and similar flags, please check the kernel's Makefiles before it gets any changes. For example, -fallow-store-data-races is disabled on this Makefile.
+
+> -O3
+
+> The command to add this flag is:
+> make KCFLAGS="-O3"
+
+> There was a official attempt to add -O3 to the kernel but Linus Torvalds reject it due to -O3 historically outputting worse code than -O2. Phoronix ran a -O3 kernel benchmark and found nearly all tested programs to have no measurable benefit.
+
+上面提到：By default, most of the kernel is build with C's -O2,参考的是<https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Makefile#n892>，注意写作本文时Linux内核主线版本是7.0-rc2，所以更新了一下这里Makefile对应的行号。具体Malefile内容如下。
+
+```
+ifdef CONFIG_CC_OPTIMIZE_FOR_PERFORMANCE
+KBUILD_CFLAGS += -O2
+KBUILD_RUSTFLAGS += -Copt-level=2
+else ifdef CONFIG_CC_OPTIMIZE_FOR_SIZE
+KBUILD_CFLAGS += -Os
+KBUILD_RUSTFLAGS += -Copt-level=s
+endif
+```
+
+可以看出，如果定义了宏CONFIG_CC_OPTIMIZE_FOR_PERFORMANCE则使用O2优化编译，如果定义了CONFIG_CC_OPTIMIZE_FOR_SIZE则使用Os优化编译，那么如何看出默认是哪钟编译呢？
+
+在文件<https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/init/Kconfig>中，我们可以看到下面的内容：
+
+```
+
+choice
+	prompt "Compiler optimization level"
+	default CC_OPTIMIZE_FOR_PERFORMANCE
+
+config CC_OPTIMIZE_FOR_PERFORMANCE
+	bool "Optimize for performance (-O2)"
+	help
+	  This is the default optimization level for the kernel, building
+	  with the "-O2" compiler flag for best performance and most
+	  helpful compile-time warnings.
+
+config CC_OPTIMIZE_FOR_SIZE
+	bool "Optimize for size (-Os)"
+	help
+	  Choosing this option will pass "-Os" to your compiler resulting
+	  in a smaller kernel.
+
+endchoice
+```
+
+可以看出默认的选项就是CC_OPTIMIZE_FOR_PERFORMANCE。这个patch[kconfig: Warn if choice default is not in choice](https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=2c37e08464a8500b69a6c0be18d159bd1a312620)还增加了对优化级别的检查。
+
+这里有篇文章[使用-O0编译Linux内核](https://www.cnblogs.com/pengdonglin137/articles/13287108.html)，专门讲解了如何配置Linux kernel使用-O0级别编译，因为内核本身没有提供原生支持，所以需要自己手动修改。对于-O1编译，也是一样的修改。
+
+到此为止，我们也可以明白，为什么内核中有很多READ_ONCE,WRITE_ONCE这种设置内存屏障的读写接口了，为的就是在gcc优化开启的条件下代码依然可以正确运行。而对于我们很多应用层软件开发，即使代码没有这种内存屏障考虑，如果没有开启代码优化，也不会出什么问题。但是如果一旦开启，就需要对这种细节格外注意，否则出现莫名其妙的问题，还怪罪是gcc优化引入的，而不知道是自己的代码没有考虑gcc的优化编译。
+
+其实，曾经有更激进的建议提出把默认级别修改为-O3，但是被linus拒绝了，理由是-O3在很长一段历史中生成的代码会更糟糕，而且没有充分的证据证明-O3有更好的效果，具体可以参考<https://lore.kernel.org/lkml/20220621133526.29662-1-mikoxyzzz@gmail.com/>，<https://lore.kernel.org/lkml/20191211104619.114557-1-oleksandr@redhat.com/>，<https://lore.kernel.org/lkml/CA+55aFz2sNBbZyg-_i8_Ldr2e8o9dfvdSfHHuRzVtP2VMAUWPg@mail.gmail.com/>。
+
+这个patch[kbuild: drop support for CONFIG_CC_OPTIMIZE_FOR_PERFORMANCE_O3](https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/commit/Makefile?h=linux-6.19.y&id=a6036a41bffba3d5007e377483b425d470ad8042)中给出了如何使用-O3 编译内核的方法，同时说明了增加-O3 编译选项需要提供的依据。
+
+```
+Folks looking to experiment with `-O3` (or any compiler flag for that
+matter) may pass them along to the command line invocation of make:
+
+$ make KCFLAGS=-O3
+
+Code that looks to re-add an explicit Kconfig option for `-O3` should
+provide:
+1. A rigorous and reproducible performance profile of a reasonable
+   userspace workload that demonstrates a hot loop in the kernel that
+   would benefit from `-O3` over `-O2`.
+2. Disassembly of said loop body before and after.
+3. Provides stats on terms of increase in file size.
+```
