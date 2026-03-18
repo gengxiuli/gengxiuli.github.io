@@ -11,3 +11,5 @@ tags:   tcp bgp quic
 [QUIC as a solution to protocol ossification](https://lwn.net/Articles/745590/)这篇文章分析了 QUIC 协议是如何在 HTTP 传输领域一步步替代 TCP 的，使用 UDP 作为底层也是迫不得已。从另一个角度说，既然很难改变 TCP，那就另起炉灶一个新的协议，也是一种很好的思路。
 
 [Checksum offloads and protocol ossification](https://lwn.net/Articles/667059/)这篇文章分析了协议校验和卸载和协议骨化的关系。
+
+[Linux and TCP offload engines](https://lwn.net/Articles/148697/)这篇文章讲述了 tcp 协议卸载到硬件被内核社区拒绝的历史，以及相关原因。
