@@ -6,7 +6,7 @@ category: networking
 tags:   linux select
 ---
 
-## select使用注意事项
+## select使用记录
 
 ### man select 
 
