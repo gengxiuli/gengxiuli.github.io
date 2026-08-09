@@ -10,7 +10,7 @@ tags:   linux select
 
 ### man select 
 
-https://www.man7.org/linux/man-pages/man2/select.2.html
+<https://www.man7.org/linux/man-pages/man2/select.2.html>
 
 ```
        WARNING: select() can monitor only file descriptors numbers that
@@ -47,7 +47,7 @@ select会修改timeout参数，比如被信号中断，或者在超时时间内�
 
 ### ubuntu ping源码地址
 
-https://git.launchpad.net/ubuntu/+source/iputils/tree/ping?h=ubuntu/plucky
+<https://git.launchpad.net/ubuntu/+source/iputils/tree/ping?h=ubuntu/plucky>
 
 其中ping_common.c文件中main_loop函数中使用poll轮询fd数据
 
@@ -67,7 +67,7 @@ https://git.launchpad.net/ubuntu/+source/iputils/tree/ping?h=ubuntu/plucky
 
 ### ubuntu traceroute源码地址
 
-https://git.launchpad.net/ubuntu/+source/traceroute/tree/traceroute
+<https://git.launchpad.net/ubuntu/+source/traceroute/tree/traceroute>
 
 其中poll.c文件中do_poll函数使用poll轮询fd数据
 
@@ -100,7 +100,7 @@ void do_poll (double timeout, void (*callback) (int fd, int revents)) {
 
 ### ppp源码地址
 
-https://github.com/ppp-project/ppp/blob/master/pppd/event-handler.c#L56
+<https://github.com/ppp-project/ppp/blob/master/pppd/event-handler.c#L56>
 
 ```c
 void wait_input(struct timeval *timo)
@@ -134,7 +134,7 @@ void wait_input(struct timeval *timo)
 
 ### FRRouting 源码地址
 
-https://github.com/FRRouting/frr/blob/master/lib/event.c#L1080
+<https://github.com/FRRouting/frr/blob/master/lib/event.c#L1080>
 
 当前的Frrouting(20260809)中event.c文件中的do_poll函数实现io多路复用，根据编译选项支持poll/ppoll/epoll几种方式。
 
@@ -155,7 +155,7 @@ https://github.com/FRRouting/frr/blob/master/lib/event.c#L1080
 
 其实在Frrouing 3.0版本以及之前的Quagga/Zebra的版本上，是支持select的。
 
-https://github.com/FRRouting/frr/blob/stable/3.0/lib/thread.c#L606
+<https://github.com/FRRouting/frr/blob/stable/3.0/lib/thread.c#L606>
 
 ```c
 #if defined(HAVE_POLL_CALL)
@@ -175,9 +175,9 @@ https://github.com/FRRouting/frr/blob/stable/3.0/lib/thread.c#L606
 
 但是从4.0开始就去掉对select的支持了。
 
-https://github.com/FRRouting/frr/blob/stable/4.0/lib/thread.c#L663
+<https://github.com/FRRouting/frr/blob/stable/4.0/lib/thread.c#L663>
 
-具体的是这个commit: https://github.com/FRRouting/frr/commit/75bcb3558d25b8ca7d3383f5c2c648d0aceae103
+具体的是这个commit: <https://github.com/FRRouting/frr/commit/75bcb3558d25b8ca7d3383f5c2c648d0aceae103>
 
 ```
 lib: remove select()
@@ -188,8 +188,8 @@ Signed-off-by: Quentin Young <qlyoung@cumulusnetworks.com>
 [DL: split off from AWAKEN() change]
 ```
 
-在这个commit(2020年10月29日)增加了对ppoll的支持: https://github.com/FRRouting/frr/commit/d81ca9a3faabe54f57b11acf87585e48d3a44480 
+在这个commit(2020年10月29日)增加了对ppoll的支持: <https://github.com/FRRouting/frr/commit/d81ca9a3faabe54f57b11acf87585e48d3a44480> 
 
-在这个commit中(2023年3月24日)把thread.c/h修改为event.c/h: https://github.com/FRRouting/frr/commit/cb37cb336a2cca77bfbaf6b0cfab12e847e45623
+在这个commit中(2023年3月24日)把thread.c/h修改为event.c/h: <https://github.com/FRRouting/frr/commit/cb37cb336a2cca77bfbaf6b0cfab12e847e45623>
 
-大概是在2025年的12月这个commit引入了epoll的支持：https://github.com/FRRouting/frr/commit/ff05cdcc153fcda62413646bef063f668edbaa21。但是根据blame的显示，应该是这个commit: https://github.com/FRRouting/frr/commit/747af764419291c802480665d7a7e918eae8c112,不过这个日期是2121年，可能是提交者本地的时间设置错了？具体时间应该是在2025年的11月9日到2025年的12月5日之间。
+大概是在2025年的12月这个commit引入了epoll的支持：<https://github.com/FRRouting/frr/commit/ff05cdcc153fcda62413646bef063f668edbaa21>。但是根据blame的显示，应该是这个commit: <https://github.com/FRRouting/frr/commit/747af764419291c802480665d7a7e918eae8c112>,不过这个日期是2121年，可能是提交者本地的时间设置错了？具体时间应该是在2025年的11月9日到2025年的12月5日之间。
