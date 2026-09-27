@@ -10,13 +10,13 @@ tags:   knowing doing
 
 <https://hbsp.harvard.edu/product/1240-PDF-ENG>
 
-## Author site
+### Author site
 
 <https://bobsutton.net/book/knowing-doing-gap/>
 
 <https://jeffreypfeffer.com/books/the-knowing-doing-gap/>
 
-## 笔记
+### 笔记
 
 这本书可直译为《知道和做到的差距》，从内容介绍来看这是一本关于商业领域的书籍，特别是领导者如何既能知道又能做到，以便自己领导公司做到商业上的成功。
 
