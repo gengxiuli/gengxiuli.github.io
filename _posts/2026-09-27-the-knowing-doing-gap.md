@@ -3,7 +3,7 @@ layout: post
 title:  "The Knowing-Doing Gap"
 date:   2026-09-27
 category: book
-tags:   doing
+tags:   knowing doing
 ---
 
 ## The Knowing-Doing Gap
