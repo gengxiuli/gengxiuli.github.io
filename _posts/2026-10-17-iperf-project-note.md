@@ -31,8 +31,8 @@ tags:   iperf
 5. iperf的代码可以很容易的集成到其他源码中，为此源码中还特地展示了一个示例(<https://github.com/esnet/iperf/tree/master/examples>),其中包含客户端文件mic.c和服务器端文件mis.c。
 6. iperf测试的流量默认是单向从client发给server，当设置参数-R的时候变成server发给client，当设置--bidir的时候，client和server之间互相发送流量。
 7. iperf默认只有1条流量，配置双向则共2条流量，可以在客户端通过-P参数设置并行多条流量。
-8. client和server之间通过json文件格式交换配置参数和计算结果，也就是发送端把上述信息序列化到json文件中，然后实际发送的是字符串，接收端再从字符串恢复成json，然后从上述json文件中反序列化数据。
+8. client和server之间通过json文件格式交换配置参数和计算结果，也就是发送端把上述信息序列化到json文件中，然后实际发送的是字符串，接收端再从字符串恢复成json，然后从上述json文件中反序列化数据。测试结果支持输出为json的形式。
 9. 当使用-b参数配置需要测量的带宽时，iperf使用了比较复杂的方法计算应该发送的报文数量，具体可以参考相关代码。
-10. client和server之间的状态机主要由server端驱动，client根据当前的状态做具体的处理，只有当测试完成后client会给server发送测试完成标志，驱动server端的状态结束。
-11. iperf支持tcp, udp和sctp这三种传输层协议，每种协议需要支持listen,accept,connect,send，recv和init这几种功能。iperf框架本身是用tcp做控制通道报文传输，其框架实现中对传输协议没有具体依赖，都是通过这几个回调函数来触发的，类似于把传输协议做成了组件的形式。
+10. client和server之间的状态机主要由server端驱动，即server设置本端状态, 同时将状态发送给client, client根据当前的状态做具体的处理，只有当测试完成后client会给server发送测试完成标志，驱动server端的状态结束。
+11. iperf支持tcp, udp和sctp这三种传输层协议，每种协议需要支持listen,accept,connect,send，recv和init这几种功能。iperf框架本身是用tcp做控制通道报文传输，其框架实现中对传输协议没有具体依赖，都是通过这几个回调函数来触发的，类似于把传输协议做成了组件的形式。控制通道和数据通道都在同一个线程中侦听。
 12. iperf中的定时器timer是自己实现的，timer定时器处理和超时计算是在主线程中处理中触发的。
